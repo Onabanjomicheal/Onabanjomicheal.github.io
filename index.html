@@ -180,8 +180,9 @@ footer{padding:26px 60px;border-top:1px solid var(--border);display:flex;justify
 .btt.show{opacity:1;transform:translateY(0)}
 .btt:hover{background:var(--accent);transform:translateY(-3px)!important}
 
-/* REVEAL — works even without JS by defaulting visible, JS enhances */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s,transform .65s}
+/* REVEAL */
+.reveal{opacity:1;transform:none}
+.reveal.js-ready{opacity:0;transform:translateY(24px);transition:opacity .65s,transform .65s}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
@@ -438,49 +439,43 @@ footer{padding:26px 60px;border-top:1px solid var(--border);display:flex;justify
       </div>
     </div>
 
+
     <!-- 7 — NaijaTrip AI -->
     <div class="pcard feat reveal" data-cat="ai-app logistics transport">
       <div class="pvis" style="background:linear-gradient(135deg,#0a2e1a,#1a5c38)">
         <svg width="120" height="60" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Chat bubbles -->
           <rect x="8" y="8" width="50" height="16" rx="8" fill="#1d6fa4" opacity=".9"/>
           <rect x="10" y="11" width="6" height="2" rx="1" fill="#eeeae0" opacity=".7"/>
           <rect x="20" y="11" width="14" height="2" rx="1" fill="#eeeae0" opacity=".7"/>
           <rect x="38" y="11" width="8" height="2" rx="1" fill="#eeeae0" opacity=".5"/>
           <rect x="8" y="15" width="24" height="2" rx="1" fill="#eeeae0" opacity=".4"/>
-          <!-- Reply bubble -->
           <rect x="62" y="28" width="50" height="20" rx="8" fill="#eeeae0" opacity=".15"/>
           <rect x="66" y="33" width="20" height="2" rx="1" fill="#eeeae0" opacity=".6"/>
           <rect x="66" y="38" width="34" height="2" rx="1" fill="#eeeae0" opacity=".4"/>
-          <!-- Nigeria map dot cluster -->
-          <circle cx="30" cy="44" r="3" fill="#1d6fa4" opacity=".8"/>
-          <circle cx="42" cy="38" r="2.5" fill="#1d6fa4" opacity=".6"/>
-          <circle cx="52" cy="46" r="2" fill="#1d6fa4" opacity=".5"/>
-          <line x1="30" y1="44" x2="42" y2="38" stroke="#eeeae0" stroke-width=".8" opacity=".3"/>
-          <line x1="42" y1="38" x2="52" y2="46" stroke="#eeeae0" stroke-width=".8" opacity=".3"/>
-          <!-- Live data pulse -->
+          <circle cx="30" cy="47" r="3" fill="#1d6fa4" opacity=".8"/>
+          <circle cx="44" cy="40" r="2.5" fill="#1d6fa4" opacity=".6"/>
+          <circle cx="55" cy="48" r="2" fill="#1d6fa4" opacity=".5"/>
+          <line x1="30" y1="47" x2="44" y2="40" stroke="#eeeae0" stroke-width=".8" opacity=".3"/>
+          <line x1="44" y1="40" x2="55" y2="48" stroke="#eeeae0" stroke-width=".8" opacity=".3"/>
           <circle cx="100" cy="12" r="5" fill="#1a936f" opacity=".9"/>
           <circle cx="100" cy="12" r="9" stroke="#1a936f" stroke-width=".8" opacity=".3" fill="none"/>
-          <text x="108" y="16" fill="#eeeae0" font-size="7" opacity=".6" font-family="monospace">LIVE</text>
+          <text x="108" y="16" fill="#eeeae0" font-size="7" opacity=".7" font-family="monospace">LIVE</text>
         </svg>
       </div>
       <div class="pbody">
         <div class="pnum"><span>007</span><span class="pbadge">AI App · Deployed</span></div>
         <div class="pname">NaijaTrip AI<br>— Nigeria Travel Intelligence</div>
-        <div class="pdesc">
-          A deployed conversational travel assistant for Nigerian routes — combining an LLM with live data pipelines (TomTom traffic, OpenWeather, FCDO/US travel advisories, real-time exchange rates) to produce accurate, actionable travel briefs. Supports English and Pidgin. Built with React + Groq + Node/Express on Vercel. Demonstrates full-stack AI product delivery: prompt engineering, multi-source live data orchestration, fallback strategies, and output validation.
-        </div>
+        <div class="pdesc">A deployed conversational travel assistant for Nigerian routes — combining an LLM with live data pipelines (TomTom traffic, OpenWeather, FCDO/US State Dept travel advisories, real-time exchange rates) to produce accurate, actionable travel briefs. Supports English and Pidgin. Demonstrates full-stack AI delivery: prompt engineering, multi-source live data orchestration, fallback strategies, output validation, and Vercel deployment.</div>
         <div class="ptags">
           <span class="ptag">React</span><span class="ptag">Groq LLM</span><span class="ptag">Node/Express</span>
           <span class="ptag">TomTom API</span><span class="ptag">Vercel</span><span class="ptag">Prompt Engineering</span>
         </div>
-        <div style="display:flex;gap:12px;padding-top:18px;border-top:1px solid var(--border);margin-top:auto;flex-wrap:wrap;">
-          <a class="plink" style="padding-top:0;border-top:none;margin-top:0;" href="https://naija-trip-ai-mhqa.vercel.app/" target="_blank">Live App ↗</a>
-          <a class="plink" style="padding-top:0;border-top:none;margin-top:0;color:var(--muted);" href="https://github.com/Onabanjomicheal/naija-trip-ai" target="_blank">GitHub ↗</a>
+        <div style="display:flex;gap:16px;padding-top:18px;border-top:1px solid var(--border);margin-top:auto;flex-wrap:wrap;align-items:center;">
+          <a style="display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;transition:all .2s;" href="https://naija-trip-ai-mhqa.vercel.app/" target="_blank" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--ink)'">Live App ↗</a>
+          <a style="display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:all .2s;" href="https://github.com/Onabanjomicheal/naija-trip-ai" target="_blank" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">GitHub ↗</a>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -605,6 +600,7 @@ window.addEventListener('scroll',()=>{
   navAs.forEach(a=>a.classList.toggle('nav-active',a.getAttribute('href')==='#'+active));
 },{passive:true});
 
+document.querySelectorAll('.reveal').forEach(el=>el.classList.add('js-ready'));
 const revealObs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}});
 },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
