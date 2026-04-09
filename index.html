@@ -4,814 +4,427 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Onabanjo Michael — Transport & ML Engineer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --bg: #0d0d0d;
-      --bg2: #141414;
-      --bg3: #1a1a1a;
-      --border: rgba(255,255,255,0.08);
-      --border-hover: rgba(255,255,255,0.15);
-      --text: #e8e6e0;
-      --text-muted: #7a7670;
-      --text-dim: #4a4845;
-      --accent: #c8a96e;
-      --accent-dim: rgba(200,169,110,0.12);
-      --accent-glow: rgba(200,169,110,0.06);
-      --green: #4a7c59;
-      --green-bg: rgba(74,124,89,0.12);
-      --font-serif: 'DM Serif Display', Georgia, serif;
-      --font-sans: 'DM Sans', system-ui, sans-serif;
-      --radius: 8px;
-      --radius-lg: 14px;
+      --surface: #141414;
+      --border: #222;
+      --text: #e8e8e8;
+      --muted: #888;
+      --accent: #c8f542;
+      --accent2: #4af;
+      --radius: 4px;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--bg);
       color: var(--text);
       font-family: var(--font-sans);
-      font-size: 16px;
-      line-height: 1.6;
+      font-size: 15px;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
+    a { color: inherit; text-decoration: none; }
+    a:hover { opacity: .75; }
+    strong { font-weight: 600; }
+    h1 { font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.08; letter-spacing: -.03em; }
+    h2 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; letter-spacing: -.02em; margin-bottom: 2.5rem; }
+    h3 { font-size: 1.05rem; font-weight: 600; line-height: 1.3; }
+    em { font-style: normal; color: var(--accent); }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
 
-    /* ─── HERO PHOTO ─── */
-    .hero-photo {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center top;
-      border: 1px solid var(--border);
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    /* ─── NAV ─── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 80px;
-      height: 60px;
-      background: rgba(13,13,13,0.92);
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,13,.9);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
+      padding: .9rem 0;
     }
-    .nav-logo {
-      font-family: var(--font-serif);
-      font-size: 18px;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: -0.01em;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 14px;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--text); }
-    .nav-links .nav-gh {
-      color: var(--accent);
-      font-size: 13px;
-      border: 1px solid rgba(200,169,110,0.3);
-      padding: 5px 12px;
-      border-radius: 20px;
-      transition: all 0.2s;
-    }
-    .nav-links .nav-gh:hover {
-      background: var(--accent-dim);
-      color: var(--accent);
-    }
+    nav .container { display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo { font-weight: 700; font-size: 1rem; letter-spacing: -.02em; }
+    .nav-links { display: flex; gap: 1.6rem; align-items: center; font-size: .85rem; color: var(--muted); }
+    .nav-links a:hover { color: var(--text); opacity: 1; }
 
-    /* ─── HERO ─── */
-    .hero {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 100px 80px 60px;
+    #home { padding: 6rem 0 5rem; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .78rem; color: var(--muted);
+      border: 1px solid var(--border); border-radius: 99px;
+      padding: .3rem .9rem; margin-bottom: 2rem;
     }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-    }
-    .hero-right {
-      padding-top: 8px;
-    }
-    .hero-divider {
-      width: 40px;
-      height: 1px;
-      background: var(--border);
-      margin: 24px 0;
-    }
-    .hero-label {
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .hero-label::before {
-      content: '';
-      display: inline-block;
-      width: 24px;
-      height: 1px;
-      background: var(--accent);
-    }
-    .hero-name {
-      font-family: var(--font-serif);
-      font-size: clamp(44px, 7vw, 76px);
-      line-height: 1.0;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 16px;
-      font-style: italic;
-      color: var(--accent);
-    }
-    .hero-tagline {
-      font-size: clamp(15px, 1.4vw, 17px);
-      color: var(--text-muted);
-      max-width: 100%;
-      line-height: 1.7;
-      margin-bottom: 0;
-      font-weight: 300;
-    }
-    .hero-tagline strong {
-      color: var(--text);
-      font-weight: 400;
-    }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+    .hero-badge::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--accent); }
+    .hero-body { max-width: 700px; margin-top: 2rem; color: var(--muted); font-size: 1.05rem; line-height: 1.75; }
+    .hero-body a { color: var(--accent2); border-bottom: 1px solid rgba(68,170,255,.3); }
+    .hero-body a:hover { opacity:1; border-color: var(--accent2); }
+    .hero-inner { display:flex; gap:3rem; align-items:flex-start; }
+    .hero-text { flex:1; }
+    .hero-img img { width:130px; height:130px; border-radius:50%; object-fit:cover; border:2px solid var(--border); }
+    @media(max-width:600px){ .hero-inner{flex-direction:column-reverse;} .hero-img img{width:90px;height:90px;} }
 
+    section { padding: 5rem 0; border-top: 1px solid var(--border); }
 
-
-
-    /* ─── SECTIONS ─── */
-    section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 60px 80px;
-    }
-    .section-eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-    }
-    .section-heading {
-      font-family: var(--font-serif);
-      font-size: clamp(32px, 5vw, 48px);
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      color: var(--text);
-      margin-bottom: 28px;
-    }
-    .section-heading em { font-style: italic; color: var(--accent); }
-
-    /* ─── ABOUT ─── */
-    .about-prose {
-      max-width: 860px;
-    }
-    .about-prose p {
-      font-size: 16px;
-      color: var(--text-muted);
-      line-height: 1.85;
-      font-weight: 300;
-      margin-bottom: 20px;
-    }
-    .about-prose p:last-child { margin-bottom: 0; }
-    .about-prose a {
-      color: var(--text);
-      text-decoration: underline;
-      text-decoration-color: rgba(255,255,255,0.2);
-      text-underline-offset: 3px;
-      transition: text-decoration-color 0.2s, color 0.2s;
-    }
-    .about-prose a:hover {
-      color: var(--accent);
-      text-decoration-color: var(--accent);
-    }
-
-    /* ─── PROJECTS ─── */
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 40px;
-    }
+    .filters { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 3rem; }
     .filter-btn {
-      font-size: 13px;
-      padding: 6px 14px;
-      border-radius: 3px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text-muted);
-      cursor: pointer;
-      font-family: var(--font-sans);
-      transition: all 0.15s;
+      font-size: .78rem; padding: .35rem .9rem;
+      border: 1px solid var(--border); border-radius: 99px;
+      background: transparent; color: var(--muted); cursor: pointer; transition: all .15s;
     }
-    .filter-btn:hover { border-color: var(--border-hover); color: var(--text); }
-    .filter-btn.active {
-      background: var(--accent-dim);
-      border-color: rgba(200,169,110,0.3);
-      color: var(--accent);
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600;
     }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
+
+    .projects-grid { display: flex; flex-direction: column; gap: 1.5px; }
     .project-card {
-      background: var(--bg);
-      padding: 32px;
-      position: relative;
-      transition: background 0.2s;
-      display: flex;
-      flex-direction: column;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem; transition: border-color .15s;
     }
-    .project-card:hover { background: var(--bg2); }
-    .project-num {
-      font-size: 11px;
-      color: var(--text-dim);
-      letter-spacing: 0.08em;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .project-card:hover { border-color: #444; }
+    .card-meta {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 1rem; flex-wrap: wrap; gap: .5rem;
     }
-    .project-type-badge {
-      font-size: 10px;
-      padding: 2px 7px;
-      border-radius: 2px;
-      background: var(--bg3);
-      color: var(--text-dim);
-      border: 1px solid var(--border);
-      letter-spacing: 0.06em;
+    .card-num { font-size: .78rem; font-family: var(--font-mono); color: var(--muted); }
+    .card-badges { display:flex; gap:.4rem; flex-wrap:wrap; }
+    .badge { font-size: .7rem; padding: .25rem .65rem; border-radius: 99px; border: 1px solid var(--border); color: var(--muted); }
+    .badge-live { background: rgba(200,245,66,.12); border-color: rgba(200,245,66,.4); color: var(--accent); }
+    .badge-type { background: rgba(68,170,255,.08); border-color: rgba(68,170,255,.3); color: var(--accent2); }
+    .card-title { font-size: 1.2rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: .75rem; line-height:1.25; }
+    .card-desc { color: var(--muted); font-size: .92rem; line-height: 1.7; margin-bottom: 1.25rem; }
+    .card-tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1.4rem; }
+    .tag {
+      font-size: .72rem; font-family: var(--font-mono); padding: .2rem .55rem;
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--muted);
     }
-    .project-type-badge.live {
-      background: var(--green-bg);
-      color: var(--green);
-      border-color: rgba(74,124,89,0.3);
+    .card-links { display:flex; gap:1rem; flex-wrap:wrap; }
+    .card-link {
+      font-size: .82rem; font-weight: 600; color: var(--text);
+      border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: border-color .15s, color .15s;
     }
-    .project-title {
-      font-family: var(--font-serif);
-      font-size: 20px;
-      color: var(--text);
-      line-height: 1.25;
-      margin-bottom: 12px;
-      letter-spacing: -0.01em;
-    }
-    .project-desc {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.65;
-      flex: 1;
-      margin-bottom: 24px;
-      font-weight: 300;
-    }
-    .project-desc strong { color: var(--accent); font-weight: 400; }
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 20px;
-    }
-    .project-tag {
-      font-size: 11px;
-      padding: 2px 8px;
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      color: var(--text-dim);
-      letter-spacing: 0.03em;
-    }
-    .project-link {
-      font-size: 13px;
-      color: var(--accent);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: gap 0.15s;
-    }
-    .project-link:hover { gap: 8px; }
-    .project-links { display: flex; gap: 16px; }
+    .card-link:hover { color: var(--accent); border-color: var(--accent); opacity:1; }
 
-    /* ─── SKILLS ─── */
-    .skills-new {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-    .skill-cat {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 32px;
-      align-items: start;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--border);
-      transition: background 0.2s;
-    }
-    .skill-cat:first-child { border-top: 1px solid var(--border); }
-    .skill-cat:last-child { border-bottom: 1px solid var(--border); }
-    .skill-cat-label {
-      font-size: 13px;
-      color: var(--text-muted);
-      font-weight: 400;
-      padding-top: 6px;
-      line-height: 1.5;
-    }
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .sk {
-      font-size: 12px;
-      padding: 5px 12px;
-      border-radius: 3px;
-      letter-spacing: 0.02em;
-      cursor: default;
-      transition: all 0.2s ease;
-      opacity: 0;
-      transform: translateY(6px);
-    }
-    .sk.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .sk-primary {
-      background: var(--bg2);
-      border: 1px solid rgba(200,169,110,0.25);
-      color: var(--accent);
-    }
-    .sk-primary:hover {
-      background: var(--accent-dim);
-      border-color: rgba(200,169,110,0.5);
-      color: var(--accent);
-      transform: translateY(-2px);
-    }
-    .sk-secondary {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-dim);
-    }
-    .sk-secondary:hover {
-      border-color: var(--border-hover);
-      color: var(--text-muted);
-      transform: translateY(-2px);
+    .skills-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1.5rem; }
+    .skill-group h4 { font-size: .75rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin-bottom:1rem; }
+    .skill-list { display:flex; flex-direction:column; gap:.5rem; }
+    .skill-item {
+      font-size:.88rem; color:var(--text); padding:.45rem .8rem;
+      background: rgba(255,255,255,.03); border:1px solid var(--border); border-radius:var(--radius);
     }
 
-    /* ─── CONTACT ─── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: start;
+    .contact-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:1rem; }
+    .contact-card {
+      padding:1.25rem 1.5rem; border:1px solid var(--border); border-radius:var(--radius);
+      background:var(--surface); transition: border-color .15s;
     }
-    .contact-intro {
-      font-size: 16px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      font-weight: 300;
-    }
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 16px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    .contact-link:hover {
-      border-color: var(--border-hover);
-      background: var(--bg2);
-    }
-    .contact-link-label {
-      font-size: 12px;
-      color: var(--text-dim);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      min-width: 70px;
-    }
-    .contact-link-value {
-      font-size: 14px;
-      color: var(--text-muted);
-    }
+    .contact-card:hover { border-color:#444; }
+    .contact-label { font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-bottom:.35rem; }
+    .contact-value { font-size:.9rem; font-weight:600; }
 
-    /* ─── FOOTER ─── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    footer p {
-      font-size: 13px;
-      color: var(--text-dim);
-    }
-    .footer-links {
-      display: flex;
-      gap: 24px;
-    }
-    .footer-links a {
-      font-size: 13px;
-      color: var(--text-dim);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--text-muted); }
-
-    /* ─── DIVIDER ─── */
-    .section-divider {
-      width: 100%;
-      height: 1px;
-      background: var(--border);
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      nav { padding: 0 20px; }
-      .hero { padding: 80px 20px 40px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-      section { padding: 40px 20px; }
-      .projects-grid { grid-template-columns: 1fr 1fr; }
-      .skills-grid { grid-template-columns: repeat(2, 1fr); }
-      .contact-grid { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 16px; text-align: center; }
-    }
-    @media (max-width: 600px) {
-      .projects-grid { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ─── SCROLL FADE ─── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    footer { padding: 2rem 0; border-top: 1px solid var(--border); font-size: .82rem; color: var(--muted); }
+    footer .container { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .footer-links { display:flex; gap:1.5rem; }
+    .hidden { display:none !important; }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">M. Onabanjo.</a>
-  <ul class="nav-links">
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="https://github.com/Onabanjomicheal" target="_blank" class="nav-gh">GitHub ↗</a></li>
-  </ul>
+  <div class="container">
+    <a class="nav-logo" href="#home">M. Onabanjo.</a>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
 </nav>
 
-<!-- HERO + ABOUT combined -->
-<section class="hero" id="home">
-  <div class="hero-grid">
-
-    <!-- LEFT: photo + name + label -->
-    <div class="hero-left">
-      <img src="profile.png" alt="Onabanjo Michael" class="hero-photo" />
-      <div class="hero-label">Lagos, Nigeria · Open to Work</div>
-      <h1 class="hero-name">
-        Onabanjo<br><em>Michael.</em>
-      </h1>
-    </div>
-
-    <!-- RIGHT: tagline + about -->
-    <div class="hero-right">
-      <p class="hero-tagline">
-        I'm focused on how transport actually works, especially the informal systems that move most people across African cities. A big part of my interest is figuring out how to capture real-time data from these systems and use it to make transport safer, more predictable, and easier to navigate for the people who rely on it. At the core, I'm concerned with practical interventions, identifying key routes, integrating cleaner vehicle technologies, and building the planning frameworks that let informal and multimodal systems operate more safely and efficiently.
-      </p>
-      <div class="hero-divider"></div>
-      <div class="about-prose">
-        <p>
-          I serve on the Editorial Board of the <a href="https://ieee-itss.org/pub/its-podcasts/" target="_blank">IEEE Intelligent Transportation Systems Society Podcast</a>, where I conducted the interview in <a href="https://itspodcast.com/its-podcast-episode-82-intelligent-transportation-system-society-and-activities-in-africa/" target="_blank">Episode 82</a> on ITS activities across Africa and contributed to <a href="https://itspodcast.com/its-podcast-episode-84-cybersecurity-in-intelligent-transportation/" target="_blank">Episode 84</a> on cybersecurity in intelligent transportation. I am also a research assistant and member at <a href="https://www.tratsedi.com" target="_blank">TRATSEDI</a>, collecting and analysing driver behaviour data to support transport research in West Africa, and participated in the <a href="https://www.tratsedi.com/ttc2025" target="_blank">Transformative Transport Service Conference 2025</a> in Loughborough. Before that, I spent a year simulating traffic on actual Lagos infrastructure. My microsimulation of the Third Mainland Bridge was calibrated to approximately 117,000 vehicles per day and showed a 20.72% reduction in emissions under a 10% autonomous vehicle penetration scenario. I hold a B.Eng. in Electrical and Electronics Engineering from Olabisi Onabanjo University, where I majored in Control and Instrumentation Engineering, and completed my undergraduate internship as a Control Engineer at Tulip Cocoa Processing Limited, a facility where over 90% of machines and devices are automated.
-        </p>
+<div id="home">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">Lagos, Nigeria · Open to Work</div>
+        <h1>Onabanjo <em>Michael.</em></h1>
+        <div class="hero-body">
+          <p>I'm focused on how transport actually works, especially the informal systems that move most people across African cities. A big part of my interest is figuring out how to capture real-time data from these systems and use it to make transport safer, more predictable, and easier to navigate for the people who rely on it. At the core, I'm concerned with practical interventions, identifying key routes, integrating cleaner vehicle technologies, and building the planning frameworks that let informal and multimodal systems operate more safely and efficiently.</p>
+          <br>
+          <p>I serve on the Editorial Board of the <a href="https://ieee-itss.org/pub/its-podcasts/" target="_blank">IEEE Intelligent Transportation Systems Society Podcast</a>, where I conducted the interview in <a href="https://itspodcast.com/its-podcast-episode-82-intelligent-transportation-system-society-and-activities-in-africa/" target="_blank">Episode 82</a> on ITS activities across Africa and contributed to <a href="https://itspodcast.com/its-podcast-episode-84-cybersecurity-in-intelligent-transportation/" target="_blank">Episode 84</a> on cybersecurity in intelligent transportation. I am also a research assistant and member at <a href="https://www.tratsedi.com" target="_blank">TRATSEDI</a>, collecting and analysing driver behaviour data to support transport research in West Africa, and participated in the <a href="https://www.tratsedi.com/ttc2025" target="_blank">Transformative Transport Service Conference 2025</a> in Loughborough. Before that, I spent a year simulating traffic on actual Lagos infrastructure. My microsimulation of the Third Mainland Bridge was calibrated to approximately 117,000 vehicles per day and showed a 20.72% reduction in emissions under a 10% autonomous vehicle penetration scenario. I hold a B.Eng. in Electrical and Electronics Engineering from Olabisi Onabanjo University, where I majored in Control and Instrumentation Engineering, and completed my undergraduate internship as a Control Engineer at Tulip Cocoa Processing Limited, a facility where over 90% of machines and devices are automated.</p>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="https://onabanjomicheal.github.io/profile.png" alt="Onabanjo Michael" />
       </div>
     </div>
-
   </div>
-</section>
+</div>
 
-<div class="section-divider"></div>
-
-<!-- PROJECTS -->
 <section id="projects">
-  
-  <h2 class="section-heading">Work I've <em>built</em></h2>
-
-  <div class="filter-row">
-    <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
-    <button class="filter-btn" onclick="filterProjects('transport', this)">Transport</button>
-    <button class="filter-btn" onclick="filterProjects('logistics', this)">Logistics</button>
-    <button class="filter-btn" onclick="filterProjects('mlops', this)">MLOps</button>
-    <button class="filter-btn" onclick="filterProjects('av', this)">Autonomous Vehicles</button>
-    <button class="filter-btn" onclick="filterProjects('ai', this)">AI Apps</button>
-  </div>
-
-  <div class="projects-grid">
-
-    <div class="project-card fade-in" data-cat="ai">
-      <div class="project-num">
-        001
-        <span class="project-type-badge live">LIVE</span>
-        <span class="project-type-badge">AI App · Deployed</span>
-      </div>
-      <div class="project-title">NaijaTrip AI — Nigeria Travel Intelligence</div>
-      <p class="project-desc">A travel intelligence app covering all 36 Nigerian states and the FCT, combining an LLM with live traffic, weather, exchange rate, and advisory feeds to deliver route briefs, fare estimates, and safety guidance in real time.</p>
-      <div class="project-tags">
-        <span class="project-tag">React</span>
-        <span class="project-tag">Groq LLM</span>
-        <span class="project-tag">Node/Express</span>
-        <span class="project-tag">TomTom API</span>
-        <span class="project-tag">Vercel</span>
-        <span class="project-tag">Prompt Engineering</span>
-      </div>
-      <div class="project-links">
-        <a href="https://naija-trip-ai-mhqa.vercel.app/" target="_blank" class="project-link">Live App ↗</a>
-        <a href="https://github.com/Onabanjomicheal/naija-trip-ai" target="_blank" class="project-link">GitHub ↗</a>
-      </div>
+  <div class="container">
+    <h2>Work I've <em>built</em></h2>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="transport">Transport</button>
+      <button class="filter-btn" data-filter="logistics">Logistics</button>
+      <button class="filter-btn" data-filter="mlops">MLOps</button>
+      <button class="filter-btn" data-filter="av">Autonomous Vehicles</button>
+      <button class="filter-btn" data-filter="ai">AI Apps</button>
     </div>
 
-    <div class="project-card fade-in" data-cat="mlops">
-      <div class="project-num">
-        002
-        <span class="project-type-badge">MLOps · Production</span>
-      </div>
-      <div class="project-title">Customer Satisfaction<br>Prediction to Production</div>
-      <p class="project-desc">Predicts customer satisfaction in e-commerce and segments outcomes into actionable risk tiers — green for automated approval, yellow for proactive outreach, and red for urgent intervention. The champion model, CatBoost, achieved a ROC-AUC of 0.72 and captured 71% of dissatisfied customers before they escalated.</p>
-      <div class="project-tags">
-        <span class="project-tag">Python</span>
-        <span class="project-tag">Scikit-learn</span>
-        <span class="project-tag">MLOps</span>
-        <span class="project-tag">CI/CD</span>
-        <span class="project-tag">Production</span>
-      </div>
-      <a href="https://github.com/Onabanjomicheal/Customer_Satisfaction_Prediction_to_Production" target="_blank" class="project-link">View Repository ↗</a>
-    </div>
+    <div class="projects-grid">
 
-    <div class="project-card fade-in" data-cat="transport">
-      <div class="project-num">
-        003
-        <span class="project-type-badge">Deep RL · Lagos</span>
+      <!-- 001 NaijaTrip — updated live link -->
+      <div class="project-card" data-tags="ai">
+        <div class="card-meta">
+          <span class="card-num">001</span>
+          <div class="card-badges">
+            <span class="badge badge-live">LIVE</span>
+            <span class="badge badge-type">AI App · Deployed</span>
+          </div>
+        </div>
+        <h3 class="card-title">NaijaTrip AI — Nigeria Travel Intelligence</h3>
+        <p class="card-desc">A travel intelligence app covering all 36 Nigerian states and the FCT, combining an LLM with live traffic, weather, exchange rate, and advisory feeds to deliver route briefs, fare estimates, and safety guidance in real time.</p>
+        <div class="card-tags">
+          <span class="tag">React</span>
+          <span class="tag">Groq LLM</span>
+          <span class="tag">Node/Express</span>
+          <span class="tag">TomTom API</span>
+          <span class="tag">Vercel</span>
+          <span class="tag">Prompt Engineering</span>
+        </div>
+        <div class="card-links">
+          <a href="https://naija-trip-ai.vercel.app/" class="card-link" target="_blank" rel="noopener">Live App ↗</a>
+          <a href="https://github.com/Onabanjomicheal/naija-trip-ai" class="card-link" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
       </div>
-      <div class="project-title">Adaptive Traffic Signal<br>Control with DQN</div>
-      <p class="project-desc">A Deep Q-Network agent trained on Lagos intersection data in SUMO. Compared against fixed-time controllers, the RL agent achieved a <strong>24% reduction in average travel time</strong> — replacing static signal timing with responsive, data-driven urban control.</p>
-      <div class="project-tags">
-        <span class="project-tag">Deep RL</span>
-        <span class="project-tag">DQN</span>
-        <span class="project-tag">SUMO</span>
-        <span class="project-tag">TraCI</span>
-        <span class="project-tag">Lagos</span>
-      </div>
-      <a href="https://github.com/Onabanjomicheal/Adaptive-Traffic-Signal-DQN" target="_blank" class="project-link">View Repository ↗</a>
-    </div>
 
-    <div class="project-card fade-in" data-cat="transport av">
-      <div class="project-num">
-        004
-        <span class="project-type-badge">Research · Lagos</span>
+      <!-- 002 AV/EV Consultant — NEW -->
+      <div class="project-card" data-tags="ai av">
+        <div class="card-meta">
+          <span class="card-num">002</span>
+          <div class="card-badges">
+            <span class="badge badge-type">AI App · AV/EV</span>
+          </div>
+        </div>
+        <h3 class="card-title">AV/EV Consultant — AI Advisory Platform for Mobility Practitioners</h3>
+        <p class="card-desc">The gap between emerging mobility technology and the people responsible for deploying it is a policy and operations risk. This platform closes that gap. It delivers on-demand, context-aware intelligence on autonomous and electric vehicle systems — drawing from a curated knowledge base through a RAG pipeline — so practitioners and policymakers can move from question to informed decision without the overhead of manual research. The result is a persistent, scalable advisory layer that elevates the quality of every AV and EV decision made downstream.</p>
+        <div class="card-tags">
+          <span class="tag">FastAPI</span>
+          <span class="tag">Streamlit</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">ChromaDB</span>
+          <span class="tag">RAG</span>
+          <span class="tag">Groq LLM</span>
+          <span class="tag">HuggingFace Embeddings</span>
+          <span class="tag">Upstash Redis</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">Python</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/Onabanjomicheal/ai-av-ev-consultant" class="card-link" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
       </div>
-      <div class="project-title">Third Mainland Bridge<br>— AV/HDV Simulation</div>
-      <p class="project-desc">Microsimulation of one of Africa's longest bridges, calibrated to ~117,000 vehicles/day. A 10% autonomous vehicle penetration scenario demonstrated a <strong>20.72% reduction in traffic emissions</strong> — evidence-based intelligence for AV policy on critical Lagos infrastructure.</p>
-      <div class="project-tags">
-        <span class="project-tag">SUMO</span>
-        <span class="project-tag">Python</span>
-        <span class="project-tag">Autonomous Vehicles</span>
-        <span class="project-tag">Emissions</span>
-      </div>
-      <a href="https://github.com/Onabanjomicheal/third-mainland-av-hdv-simulation" target="_blank" class="project-link">View Repository ↗</a>
-    </div>
 
-    <div class="project-card fade-in" data-cat="av">
-      <div class="project-num">
-        005
-        <span class="project-type-badge">AV · Simulation</span>
+      <!-- 003 Customer Satisfaction -->
+      <div class="project-card" data-tags="mlops">
+        <div class="card-meta">
+          <span class="card-num">003</span>
+          <div class="card-badges"><span class="badge badge-type">MLOps · Production</span></div>
+        </div>
+        <h3 class="card-title">Customer Satisfaction<br>Prediction to Production</h3>
+        <p class="card-desc">Predicts customer satisfaction in e-commerce and segments outcomes into actionable risk tiers — green for automated approval, yellow for proactive outreach, and red for urgent intervention. The champion model, CatBoost, achieved a ROC-AUC of 0.72 and captured 71% of dissatisfied customers before they escalated.</p>
+        <div class="card-tags">
+          <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">MLOps</span><span class="tag">CI/CD</span><span class="tag">Production</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/Onabanjomicheal/Customer_Satisfaction_Prediction_to_Production" class="card-link" target="_blank" rel="noopener">View Repository ↗</a>
+        </div>
       </div>
-      <div class="project-title">AV Car-Following<br>& Lane-Changing</div>
-      <p class="project-desc">Models how autonomous vehicles make longitudinal and lateral decisions — following distance, speed adaptation, and lane-change triggering — and studies the effect on corridor-level traffic flow and safety.</p>
-      <div class="project-tags">
-        <span class="project-tag">Python</span>
-        <span class="project-tag">AV Modelling</span>
-        <span class="project-tag">Car Following</span>
-        <span class="project-tag">Lane Changing</span>
-      </div>
-      <a href="https://github.com/Onabanjomicheal/Autonomous_Vehicle--Car_Following-and-Lane_Changing-Mini-Project" target="_blank" class="project-link">View Repository ↗</a>
-    </div>
 
-    <div class="project-card fade-in" data-cat="logistics">
-      <div class="project-num">
-        006
-        <span class="project-type-badge">Logistics · EDA</span>
+      <!-- 004 Adaptive Traffic Signal -->
+      <div class="project-card" data-tags="transport">
+        <div class="card-meta">
+          <span class="card-num">004</span>
+          <div class="card-badges"><span class="badge badge-type">Deep RL · Lagos</span></div>
+        </div>
+        <h3 class="card-title">Adaptive Traffic Signal<br>Control with DQN</h3>
+        <p class="card-desc">A Deep Q-Network agent trained on Lagos intersection data in SUMO. Compared against fixed-time controllers, the RL agent achieved a <strong>24% reduction in average travel time</strong> — replacing static signal timing with responsive, data-driven urban control.</p>
+        <div class="card-tags">
+          <span class="tag">Deep RL</span><span class="tag">DQN</span><span class="tag">SUMO</span><span class="tag">TraCI</span><span class="tag">Lagos</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/Onabanjomicheal/Adaptive-Traffic-Signal-DQN" class="card-link" target="_blank" rel="noopener">View Repository ↗</a>
+        </div>
       </div>
-      <div class="project-title">Delivery Logistics Analysis<br>— Delhivery Network</div>
-      <p class="project-desc">Analyses Delhivery's logistics network to identify the key drivers behind delivery delays, surfacing patterns across trip types, geography, and time to give operations teams a clear basis for reducing late shipments.</p>
-      <div class="project-tags">
-        <span class="project-tag">Python</span>
-        <span class="project-tag">Pandas</span>
-        <span class="project-tag">Seaborn</span>
-        <span class="project-tag">EDA</span>
-        <span class="project-tag">Supply Chain</span>
-      </div>
-      <a href="https://github.com/Onabanjomicheal/Delivery-Logistics-Data-Analysis" target="_blank" class="project-link">View Repository ↗</a>
-    </div>
 
-    <div class="project-card fade-in" data-cat="ai logistics">
-      <div class="project-num">
-        007
-        <span class="project-type-badge">Logistics · AI App</span>
+      <!-- 005 Third Mainland Bridge -->
+      <div class="project-card" data-tags="transport av">
+        <div class="card-meta">
+          <span class="card-num">005</span>
+          <div class="card-badges"><span class="badge badge-type">Research · Lagos</span></div>
+        </div>
+        <h3 class="card-title">Third Mainland Bridge<br>— AV/HDV Simulation</h3>
+        <p class="card-desc">Microsimulation of one of Africa's longest bridges, calibrated to ~117,000 vehicles/day. A 10% autonomous vehicle penetration scenario demonstrated a <strong>20.72% reduction in traffic emissions</strong> — evidence-based intelligence for AV policy on critical Lagos infrastructure.</p>
+        <div class="card-tags">
+          <span class="tag">SUMO</span><span class="tag">Python</span><span class="tag">Autonomous Vehicles</span><span class="tag">Emissions</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/Onabanjomicheal/third-mainland-av-hdv-simulation" class="card-link" target="_blank" rel="noopener">View Repository ↗</a>
+        </div>
       </div>
-      <div class="project-title">Compliance QA Pipeline<br>— Logistics Video Intelligence</div>
-      <p class="project-desc">Logistics operations lose significant value to compliance failures that go undetected until it's too late. This system watches live video feeds from logistics facilities and automatically flags violations in real time — no human reviewer required. It reads the environment, cross-references the applicable regulations, and delivers a structured compliance report, turning what was a manual audit process into a continuous, automated one.</p>
-      <div class="project-tags">
-        <span class="project-tag">Azure AI Vision</span>
-        <span class="project-tag">Azure OpenAI</span>
-        <span class="project-tag">Azure AI Search</span>
-        <span class="project-tag">RAG</span>
-        <span class="project-tag">FastAPI</span>
-        <span class="project-tag">Python</span>
-        <span class="project-tag">OpenTelemetry</span>
-      </div>
-      <a href="https://github.com/Onabanjomicheal/logistics-video-compliance" target="_blank" class="project-link">GitHub ↗</a>
-    </div>
 
+      <!-- 006 Car-Following -->
+      <div class="project-card" data-tags="av">
+        <div class="card-meta">
+          <span class="card-num">006</span>
+          <div class="card-badges"><span class="badge badge-type">AV · Simulation</span></div>
+        </div>
+        <h3 class="card-title">AV Car-Following<br>& Lane-Changing</h3>
+        <p class="card-desc">Models how autonomous vehicles make longitudinal and lateral decisions — following distance, speed adaptation, and lane-change triggering — and studies the effect on corridor-level traffic flow and safety.</p>
+        <div class="card-tags">
+          <span class="tag">Python</span><span class="tag">AV Modelling</span><span class="tag">Car Following</span><span class="tag">Lane Changing</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/Onabanjomicheal/Autonomous_Vehicle--Car_Following-and-Lane_Changing-Mini-Project" class="card-link" target="_blank" rel="noopener">View Repository ↗</a>
+        </div>
+      </div>
+
+      <!-- 007 Delhivery -->
+      <div class="project-card" data-tags="logistics">
+        <div class="card-meta">
+          <span class="card-num">007</span>
+          <div class="card-badges"><span class="badge badge-type">Logistics · EDA</span></div>
+        </div>
+        <h3 class="card-title">Delivery Logistics Analysis<br>— Delhivery Network</h3>
+        <p class="card-desc">Analyses Delhivery's logistics network to identify the key drivers behind delivery delays, surfacing patterns across trip types, geography, and time to give operations teams a clear basis for reducing late shipments.</p>
+        <div class="card-tags">
+          <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Seaborn</span><span class="tag">EDA</span><span class="tag">Supply Chain</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/Onabanjomicheal/Delivery-Logistics-Data-Analysis" class="card-link" target="_blank" rel="noopener">View Repository ↗</a>
+        </div>
+      </div>
+
+      <!-- 008 Compliance QA -->
+      <div class="project-card" data-tags="logistics ai">
+        <div class="card-meta">
+          <span class="card-num">008</span>
+          <div class="card-badges"><span class="badge badge-type">Logistics · AI App</span></div>
+        </div>
+        <h3 class="card-title">Compliance QA Pipeline<br>— Logistics Video Intelligence</h3>
+        <p class="card-desc">Logistics operations lose significant value to compliance failures that go undetected until it's too late. This system watches live video feeds from logistics facilities and automatically flags violations in real time — no human reviewer required. It reads the environment, cross-references the applicable regulations, and delivers a structured compliance report, turning what was a manual audit process into a continuous, automated one.</p>
+        <div class="card-tags">
+          <span class="tag">Azure AI Vision</span><span class="tag">Azure OpenAI</span><span class="tag">Azure AI Search</span><span class="tag">RAG</span><span class="tag">FastAPI</span><span class="tag">Python</span><span class="tag">OpenTelemetry</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/Onabanjomicheal/logistics-video-compliance" class="card-link" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
-
-<!-- SKILLS -->
 <section id="skills">
-
-  <h2 class="section-heading">What I <em>actually</em> know</h2>
-
-  <div class="skills-new fade-in">
-
-    <div class="skill-cat">
-      <div class="skill-cat-label">Transport simulation and modelling</div>
-      <div class="skill-tags">
-        <span class="sk sk-primary">SUMO Microsimulation</span>
-        <span class="sk sk-primary">Deep Reinforcement Learning</span>
-        <span class="sk sk-primary">TraCI Python API</span>
-        <span class="sk sk-secondary">QGIS / GeoPandas</span>
-        <span class="sk sk-secondary">AV Behaviour Modelling</span>
-        <span class="sk sk-secondary">GTFS Data</span>
+  <div class="container">
+    <h2>What I <em>actually</em> know</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Transport simulation and modelling</h4>
+        <div class="skill-list">
+          <div class="skill-item">SUMO Microsimulation</div>
+          <div class="skill-item">Deep Reinforcement Learning</div>
+          <div class="skill-item">TraCI Python API</div>
+          <div class="skill-item">QGIS / GeoPandas</div>
+          <div class="skill-item">AV Behaviour Modelling</div>
+          <div class="skill-item">GTFS Data</div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Machine learning and AI engineering</h4>
+        <div class="skill-list">
+          <div class="skill-item">TensorFlow / PyTorch</div>
+          <div class="skill-item">Scikit-learn</div>
+          <div class="skill-item">Stable-Baselines3 / DQN</div>
+          <div class="skill-item">Hugging Face Transformers</div>
+          <div class="skill-item">LLM APIs</div>
+          <div class="skill-item">Computer Vision / CNN</div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>MLOps and cloud deployment</h4>
+        <div class="skill-list">
+          <div class="skill-item">AWS / Azure / Vercel</div>
+          <div class="skill-item">DVC / MLflow / Kubeflow</div>
+          <div class="skill-item">GitHub Actions / CI-CD</div>
+          <div class="skill-item">Docker</div>
+        </div>
       </div>
     </div>
-
-    <div class="skill-cat">
-      <div class="skill-cat-label">Machine learning and AI engineering</div>
-      <div class="skill-tags">
-        <span class="sk sk-primary">TensorFlow / PyTorch</span>
-        <span class="sk sk-primary">Scikit-learn</span>
-        <span class="sk sk-primary">Stable-Baselines3 / DQN</span>
-        <span class="sk sk-secondary">Hugging Face Transformers</span>
-        <span class="sk sk-secondary">LLM APIs</span>
-        <span class="sk sk-secondary">Computer Vision / CNN</span>
-      </div>
-    </div>
-
-    <div class="skill-cat">
-      <div class="skill-cat-label">MLOps and cloud deployment</div>
-      <div class="skill-tags">
-        <span class="sk sk-primary">AWS / Azure / Vercel</span>
-        <span class="sk sk-primary">DVC / MLflow / Kubeflow</span>
-        <span class="sk sk-primary">GitHub Actions / CI-CD</span>
-        <span class="sk sk-secondary">Docker</span>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<div class="section-divider"></div>
-
-<!-- CONTACT -->
 <section id="contact">
-  
-  <h2 class="section-heading">Get in <em>touch.</em></h2>
-
-  <div class="contact-grid fade-in">
-    <div class="contact-intro">
-      Open to research collaborations, entry-level ML and data roles, and conversations about transportation and AI in Africa.
-    </div>
-    <div class="contact-links">
-      <a href="mailto:Onabanjomicheal01@gmail.com" class="contact-link">
-        <span class="contact-link-label">Email</span>
-        <span class="contact-link-value">Onabanjomicheal01@gmail.com</span>
+  <div class="container">
+    <h2>Get in <em>touch.</em></h2>
+    <p style="color:var(--muted);margin-bottom:2rem;max-width:520px;">Open to research collaborations, entry-level ML and data roles, and conversations about transportation and AI in Africa.</p>
+    <div class="contact-grid">
+      <a href="mailto:Onabanjomicheal01@gmail.com" class="contact-card">
+        <div class="contact-label">Email</div>
+        <div class="contact-value">Onabanjomicheal01@gmail.com</div>
       </a>
-      <a href="https://www.linkedin.com/in/micheal-onabanjo" target="_blank" class="contact-link">
-        <span class="contact-link-label">LinkedIn</span>
-        <span class="contact-link-value">linkedin.com/in/micheal-onabanjo</span>
+      <a href="https://www.linkedin.com/in/micheal-onabanjo" target="_blank" class="contact-card">
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value">linkedin.com/in/micheal-onabanjo</div>
       </a>
-      <a href="https://github.com/Onabanjomicheal" target="_blank" class="contact-link">
-        <span class="contact-link-label">GitHub</span>
-        <span class="contact-link-value">github.com/Onabanjomicheal</span>
+      <a href="https://github.com/Onabanjomicheal" target="_blank" class="contact-card">
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value">github.com/Onabanjomicheal</div>
       </a>
-      <a href="https://twitter.com/onabanjomico" target="_blank" class="contact-link">
-        <span class="contact-link-label">Twitter / X</span>
-        <span class="contact-link-value">@onabanjomico</span>
+      <a href="https://twitter.com/onabanjomico" target="_blank" class="contact-card">
+        <div class="contact-label">Twitter / X</div>
+        <div class="contact-value">@onabanjomico</div>
       </a>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 Onabanjo Michael Oluwatobi · Lagos, Nigeria 🇳🇬</p>
-  <div class="footer-links">
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="https://github.com/Onabanjomicheal" target="_blank">GitHub</a>
-    <a href="#home">↑</a>
+  <div class="container">
+    <span>© 2026 Onabanjo Michael Oluwatobi · Lagos, Nigeria 🇳🇬</span>
+    <div class="footer-links">
+      <a href="#home">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="https://github.com/Onabanjomicheal" target="_blank">GitHub</a>
+      <a href="#home">↑</a>
+    </div>
   </div>
 </footer>
 
 <script>
-  // Scroll fade-in
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-      }
+  const btns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.project-card');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'all') {
+          card.classList.remove('hidden');
+        } else {
+          const tags = card.dataset.tags || '';
+          card.classList.toggle('hidden', !tags.split(' ').includes(filter));
+        }
+      });
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-  // Skill tags stagger
-  const tagObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const tags = entry.target.querySelectorAll('.sk');
-        tags.forEach((tag, i) => {
-          setTimeout(() => tag.classList.add('visible'), i * 60);
-        });
-        tagObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-  document.querySelectorAll('.skill-cat').forEach(cat => tagObserver.observe(cat));
-
-  // Project filter
-  function filterProjects(cat, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.project-card').forEach(card => {
-      if (cat === 'all') {
-        card.style.display = 'flex';
-      } else {
-        const cats = (card.dataset.cat || '').split(' ');
-        card.style.display = cats.includes(cat) ? 'flex' : 'none';
-      }
-    });
-  }
+  });
 </script>
 
 </body>
