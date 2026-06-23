@@ -4,428 +4,2008 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Onabanjo Michael — Transport & ML Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0d0d0d;
-      --surface: #141414;
-      --border: #222;
-      --text: #e8e8e8;
-      --muted: #888;
-      --accent: #c8f542;
-      --accent2: #4af;
-      --radius: 4px;
-      --font-sans: 'Inter', system-ui, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --bg: #0d0d0d; --bg2: #141414; --bg3: #1a1a1a;
+      --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.16);
+      --text: #f0ede6; --muted: #7a7870;
+      --accent: #c8ff5f; --accent2: #3ddc97;
+      --sans: 'Inter', system-ui, sans-serif;
+      --serif: 'DM Serif Display', Georgia, serif;
     }
     html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-sans);
-      font-size: 15px;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-    a:hover { opacity: .75; }
-    strong { font-weight: 600; }
-    h1 { font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.08; letter-spacing: -.03em; }
-    h2 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; letter-spacing: -.02em; margin-bottom: 2.5rem; }
-    h3 { font-size: 1.05rem; font-weight: 600; line-height: 1.3; }
-    em { font-style: normal; color: var(--accent); }
-    .container { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
 
     nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(13,13,13,.9);
-      backdrop-filter: blur(12px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 60px;
       border-bottom: 1px solid var(--border);
-      padding: .9rem 0;
+      background: rgba(13,13,13,0.92); backdrop-filter: blur(12px);
     }
-    nav .container { display: flex; justify-content: space-between; align-items: center; }
-    .nav-logo { font-weight: 700; font-size: 1rem; letter-spacing: -.02em; }
-    .nav-links { display: flex; gap: 1.6rem; align-items: center; font-size: .85rem; color: var(--muted); }
-    .nav-links a:hover { color: var(--text); opacity: 1; }
+    .nav-logo { font-family: var(--serif); font-size: 1.15rem; color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.8125rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.nav-articles { color: #ff7033; }
+    .nav-links a.nav-articles:hover { color: #ffb38a; }
 
-    #home { padding: 6rem 0 5rem; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      font-size: .78rem; color: var(--muted);
-      border: 1px solid var(--border); border-radius: 99px;
-      padding: .3rem .9rem; margin-bottom: 2rem;
-    }
-    .hero-badge::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--accent); }
-    .hero-body { max-width: 700px; margin-top: 2rem; color: var(--muted); font-size: 1.05rem; line-height: 1.75; }
-    .hero-body a { color: var(--accent2); border-bottom: 1px solid rgba(68,170,255,.3); }
-    .hero-body a:hover { opacity:1; border-color: var(--accent2); }
-    .hero-inner { display:flex; gap:3rem; align-items:flex-start; }
-    .hero-text { flex:1; }
-    .hero-img img { width:130px; height:130px; border-radius:50%; object-fit:cover; border:2px solid var(--border); }
-    @media(max-width:600px){ .hero-inner{flex-direction:column-reverse;} .hero-img img{width:90px;height:90px;} }
+    section { padding: 6rem 2.5rem; max-width: 960px; margin: 0 auto; }
+    #home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 100px; max-width: 960px; }
 
-    section { padding: 5rem 0; border-top: 1px solid var(--border); }
+    .hero-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.5rem; }
+    .hero-label span { display: inline-block; width: 24px; height: 1px; background: var(--accent2); vertical-align: middle; margin-right: 10px; }
+    .hero-title { font-family: var(--serif); font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1.03; letter-spacing: -0.02em; margin-bottom: 1.5rem; color: var(--text); }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-bio { max-width: 640px; color: #a09d96; font-size: 1.05rem; line-height: 1.75; margin-bottom: 1rem; }
+    .hero-ieee { max-width: 640px; color: #7a7870; font-size: 0.925rem; line-height: 1.7; margin-bottom: 2.5rem; }
+    .hero-ieee a { color: var(--accent2); text-decoration: none; }
+    .hero-ieee a:hover { text-decoration: underline; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+    .btn { display: inline-flex; align-items: center; gap: 7px; padding: 0.6rem 1.25rem; border: 1px solid var(--border-hover); border-radius: 4px; font-size: 0.8125rem; font-weight: 500; text-decoration: none; color: var(--muted); background: transparent; transition: color 0.2s, border-color 0.2s, background 0.2s; }
+    .btn:hover { color: var(--text); border-color: rgba(255,255,255,0.28); background: var(--bg2); }
+    .btn-primary { background: var(--accent2); color: #062613; border-color: var(--accent2); font-weight: 600; }
+    .btn-primary:hover { background: var(--accent); border-color: var(--accent); color: #1a2e0a; }
+    .btn-substack { border-color: rgba(255,112,51,0.4); color: #ff7033; }
+    .btn-substack:hover { border-color: #ff7033; background: rgba(255,112,51,0.08); color: #ff7033; }
 
-    .filters { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 3rem; }
-    .filter-btn {
-      font-size: .78rem; padding: .35rem .9rem;
-      border: 1px solid var(--border); border-radius: 99px;
-      background: transparent; color: var(--muted); cursor: pointer; transition: all .15s;
-    }
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600;
-    }
+    .section-eyebrow { font-size: 0.725rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+    .section-eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--muted); }
+    h2.section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 3.5rem; color: var(--text); }
+    h2.section-title em { font-style: italic; color: var(--accent); }
 
-    .projects-grid { display: flex; flex-direction: column; gap: 1.5px; }
-    .project-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 2rem; transition: border-color .15s;
-    }
-    .project-card:hover { border-color: #444; }
-    .card-meta {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      margin-bottom: 1rem; flex-wrap: wrap; gap: .5rem;
-    }
-    .card-num { font-size: .78rem; font-family: var(--font-mono); color: var(--muted); }
-    .card-badges { display:flex; gap:.4rem; flex-wrap:wrap; }
-    .badge { font-size: .7rem; padding: .25rem .65rem; border-radius: 99px; border: 1px solid var(--border); color: var(--muted); }
-    .badge-live { background: rgba(200,245,66,.12); border-color: rgba(200,245,66,.4); color: var(--accent); }
-    .badge-type { background: rgba(68,170,255,.08); border-color: rgba(68,170,255,.3); color: var(--accent2); }
-    .card-title { font-size: 1.2rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: .75rem; line-height:1.25; }
-    .card-desc { color: var(--muted); font-size: .92rem; line-height: 1.7; margin-bottom: 1.25rem; }
-    .card-tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1.4rem; }
-    .tag {
-      font-size: .72rem; font-family: var(--font-mono); padding: .2rem .55rem;
-      background: rgba(255,255,255,.04); border: 1px solid var(--border);
-      border-radius: var(--radius); color: var(--muted);
-    }
-    .card-links { display:flex; gap:1rem; flex-wrap:wrap; }
-    .card-link {
-      font-size: .82rem; font-weight: 600; color: var(--text);
-      border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: border-color .15s, color .15s;
-    }
-    .card-link:hover { color: var(--accent); border-color: var(--accent); opacity:1; }
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 3rem; }
+    .filter-btn { padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 2rem; font-size: 0.78rem; background: transparent; color: var(--muted); cursor: pointer; transition: all 0.18s; font-family: var(--sans); }
+    .filter-btn:hover, .filter-btn.active { border-color: var(--accent2); color: var(--accent2); background: rgba(61,220,151,0.06); }
+    .projects-grid { display: flex; flex-direction: column; gap: 1px; border-top: 1px solid var(--border); }
+    .project-card { display: grid; grid-template-columns: 60px 1fr; gap: 0 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); transition: background 0.18s, padding 0.18s; }
+    .project-card:hover { background: var(--bg2); padding-left: 1rem; padding-right: 1rem; border-radius: 4px; }
+    .project-num { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; padding-top: 0.3rem; }
+    .project-meta { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+    .project-badge { font-size: 0.67rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); }
+    .project-badge.live { border-color: rgba(61,220,151,0.4); color: var(--accent2); background: rgba(61,220,151,0.07); }
+    .project-title { font-size: 1.1rem; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; line-height: 1.3; }
+    .project-desc { font-size: 0.875rem; color: #7a7870; line-height: 1.65; margin-bottom: 1rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.875rem; }
+    .tag { font-size: 0.68rem; padding: 2px 7px; border-radius: 3px; background: var(--bg3); color: #666360; border: 1px solid var(--border); }
+    .project-links { display: flex; gap: 0.75rem; }
+    .proj-link { font-size: 0.78rem; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 0.18s, border-color 0.18s; }
+    .proj-link:hover { color: var(--accent2); border-color: var(--accent2); }
 
-    .skills-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1.5rem; }
-    .skill-group h4 { font-size: .75rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin-bottom:1rem; }
-    .skill-list { display:flex; flex-direction:column; gap:.5rem; }
-    .skill-item {
-      font-size:.88rem; color:var(--text); padding:.45rem .8rem;
-      background: rgba(255,255,255,.03); border:1px solid var(--border); border-radius:var(--radius);
-    }
+    #articles { background: var(--bg); }
+    .articles-intro { font-size: 1.05rem; color: #7a7870; max-width: 580px; margin-bottom: 3rem; line-height: 1.75; }
+    .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
+    .article-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; text-decoration: none; display: flex; flex-direction: column; gap: 0.75rem; transition: border-color 0.2s, background 0.2s; }
+    .article-card:hover { border-color: rgba(255,112,51,0.35); background: var(--bg3); }
+    .article-topic { font-size: 0.67rem; letter-spacing: 0.1em; text-transform: uppercase; color: #ff7033; }
+    .article-title { font-size: 0.975rem; font-weight: 500; color: var(--text); line-height: 1.4; }
+    .article-excerpt { font-size: 0.825rem; color: var(--muted); line-height: 1.6; flex: 1; }
+    .article-cta { font-size: 0.78rem; color: #ff7033; display: flex; align-items: center; gap: 5px; }
+    .articles-footer { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .substack-cta { display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem; color: #ff7033; text-decoration: none; font-weight: 500; transition: gap 0.2s; }
+    .substack-cta:hover { gap: 12px; }
+    .articles-desc { font-size: 0.825rem; color: var(--muted); }
 
-    .contact-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:1rem; }
-    .contact-card {
-      padding:1.25rem 1.5rem; border:1px solid var(--border); border-radius:var(--radius);
-      background:var(--surface); transition: border-color .15s;
-    }
-    .contact-card:hover { border-color:#444; }
-    .contact-label { font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-bottom:.35rem; }
-    .contact-value { font-size:.9rem; font-weight:600; }
+    .skills-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2.5rem; }
+    .skill-group h3 { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.25rem; }
+    .skill-list { list-style: none; }
+    .skill-list li { font-size: 0.875rem; color: #8a8780; padding: 0.4rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+    .skill-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--border-hover); flex-shrink: 0; }
 
-    footer { padding: 2rem 0; border-top: 1px solid var(--border); font-size: .82rem; color: var(--muted); }
-    footer .container { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-    .footer-links { display:flex; gap:1.5rem; }
-    .hidden { display:none !important; }
+    #contact { border-top: 1px solid var(--border); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .contact-copy p { color: #7a7870; font-size: 0.925rem; line-height: 1.75; margin-bottom: 1.25rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-link { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--muted); font-size: 0.875rem; transition: color 0.18s; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 4px; background: var(--bg2); }
+    .contact-link:hover { color: var(--text); border-color: var(--border-hover); }
+    .contact-link.substack-link:hover { color: #ff7033; border-color: rgba(255,112,51,0.3); }
+    .contact-link-icon { font-size: 1rem; width: 20px; text-align: center; }
+    .contact-link-label { flex: 1; }
+    .contact-link-value { font-size: 0.8rem; color: #555350; }
+
+    footer { text-align: center; padding: 2.5rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: #444240; }
+    footer a { color: #555350; text-decoration: none; }
+    footer a:hover { color: var(--muted); }
+
+    @media (max-width: 680px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+      section { padding: 4rem 1.25rem; }
+      #home { padding: 100px 1.25rem 4rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .project-card { grid-template-columns: 1fr; }
+      .project-num { display: none; }
+    }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <nav>
-  <div class="container">
-    <a class="nav-logo" href="#home">M. Onabanjo.</a>
-    <div class="nav-links">
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-      <a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener">GitHub ↗</a>
-    </div>
-  </div>
+  <a href="#home" class="nav-logo">M. Onabanjo.</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#articles" class="nav-articles">✍ Articles</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener">GitHub ↗</a></li>
+  </ul>
 </nav>
 
-<div id="home">
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-text">
-        <div class="hero-badge">Lagos, Nigeria · Open to Work</div>
-        <h1>Onabanjo <em>Michael.</em></h1>
-        <div class="hero-body">
-          <p>I'm focused on how transport actually works, especially the informal systems that move most people across African cities. A big part of my interest is figuring out how to capture real-time data from these systems and use it to make transport clean, safer and easier to navigate for the people who rely on it. At the core, I'm concerned with practical interventions, identifying key routes, integrating cleaner and electric vehicle technologies, and building the planning frameworks that let informal and multimodal systems operate more safely and efficiently. More recently, this has extended into EV systems, where I build tools and write technical content covering charging infrastructure, battery management, and grid-aware deployment.</p>
-          <br>
-          <p>I serve on the Editorial Board of the <a href="https://ieee-itss.org/pub/its-podcasts/" target="_blank">IEEE Intelligent Transportation Systems Society Podcast</a>, where I conducted the interview in <a href="https://itspodcast.com/its-podcast-episode-82-intelligent-transportation-system-society-and-activities-in-africa/" target="_blank">Episode 82</a> on ITS activities across Africa and contributed to <a href="https://itspodcast.com/its-podcast-episode-84-cybersecurity-in-intelligent-transportation/" target="_blank">Episode 84</a> on cybersecurity in intelligent transportation. I am also a research assistant and member at <a href="https://www.tratsedi.com" target="_blank">TRATSEDI</a>, collecting and analysing driver behaviour data to support transport research in West Africa, and participated in the <a href="https://www.tratsedi.com/ttc2025" target="_blank">Transformative Transport Service Conference 2025</a> in Loughborough. Before that, I spent a year simulating traffic on actual Lagos infrastructure. My microsimulation of the Third Mainland Bridge was calibrated to approximately 117,000 vehicles per day and showed a 20.72% reduction in emissions under a 10% autonomous vehicle penetration scenario. I hold a B.Eng. in Electrical and Electronics Engineering from Olabisi Onabanjo University, where I majored in Control and Instrumentation Engineering, and completed my undergraduate internship as a Control Engineer at Tulip Cocoa Processing Limited, a facility where over 90% of machines and devices are automated.</p>
-        </div>
-      </div>
-      <div class="hero-img">
-        <img src="https://onabanjomicheal.github.io/profile.png" alt="Onabanjo Michael" />
-      </div>
-    </div>
+<section id="home">
+  <p class="hero-label"><span></span>Lagos, Nigeria · Open to Work</p>
+  <h1 class="hero-title">Onabanjo<br><em>Michael.</em></h1>
+  <p class="hero-bio">
+    I'm focused on how transport actually works — especially the informal systems that move most people across African cities. A big part of my work is capturing real-time data from these systems and using it to make transport clean, safer, and easier to navigate. At the core: identifying key routes, integrating EV technologies, and building planning frameworks for informal and multimodal systems.
+  </p>
+  <p class="hero-ieee">
+    Editorial Board, <a href="https://ieee-itss.org/pub/its-podcasts/" target="_blank" rel="noopener">IEEE ITS Society Podcast</a> ·
+    Research Assistant, <a href="https://www.tratsedi.com" target="_blank" rel="noopener">TRATSEDI</a> ·
+    B.Eng. Electrical &amp; Electronics Engineering, OOU
+  </p>
+  <div class="hero-btns">
+    <a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener" class="btn">⌥ GitHub</a>
+    <a href="https://www.linkedin.com/in/micheal-onabanjo" target="_blank" rel="noopener" class="btn">in LinkedIn</a>
+    <a href="https://twitter.com/onabanjomico" target="_blank" rel="noopener" class="btn">𝕏 Twitter</a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="btn btn-substack">✍ Substack</a>
+    <a href="mailto:Onabanjomicheal01@gmail.com" class="btn btn-primary">Get in touch →</a>
   </div>
-</div>
+</section>
 
 <section id="projects">
-  <div class="container">
-    <h2>Work I've <em>built</em></h2>
-    <div class="filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="transport">Transport</button>
-      <button class="filter-btn" data-filter="logistics">Logistics</button>
-      <button class="filter-btn" data-filter="mlops">MLOps</button>
-      <button class="filter-btn" data-filter="av">Autonomous Vehicles</button>
-      <button class="filter-btn" data-filter="ai">AI Apps</button>
+  <p class="section-eyebrow">Work I've built</p>
+  <h2 class="section-title">Projects &amp; <em>Research</em></h2>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterProjects('all',this)">All</button>
+    <button class="filter-btn" onclick="filterProjects('transport',this)">Transport</button>
+    <button class="filter-btn" onclick="filterProjects('logistics',this)">Logistics</button>
+    <button class="filter-btn" onclick="filterProjects('mlops',this)">MLOps</button>
+    <button class="filter-btn" onclick="filterProjects('av',this)">Autonomous Vehicles</button>
+    <button class="filter-btn" onclick="filterProjects('ai',this)">AI Apps</button>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card" data-tags="ai transport">
+      <div class="project-num">001</div>
+      <div>
+        <div class="project-meta"><span class="project-badge live">LIVE · AI App</span><span class="project-badge">Deployed</span></div>
+        <div class="project-title">NaijaTrip AI — Nigeria Travel Intelligence</div>
+        <div class="project-desc">A travel intelligence app covering all 36 Nigerian states and the FCT, combining an LLM with live traffic, weather, exchange rate, and advisory feeds to deliver route briefs, fare estimates, and safety guidance in real time.</div>
+        <div class="project-tags"><span class="tag">React</span><span class="tag">Groq LLM</span><span class="tag">Node/Express</span><span class="tag">TomTom API</span><span class="tag">Vercel</span><span class="tag">Prompt Engineering</span></div>
+        <div class="project-links"><a href="https://naija-trip-ai.vercel.app/" target="_blank" class="proj-link">Live App ↗</a><a href="https://github.com/Onabanjomicheal/naija-trip-ai" target="_blank" class="proj-link">GitHub ↗</a></div>
+      </div>
     </div>
 
-    <div class="projects-grid">
-
-      <!-- 001 NaijaTrip — updated live link -->
-      <div class="project-card" data-tags="ai">
-        <div class="card-meta">
-          <span class="card-num">001</span>
-          <div class="card-badges">
-            <span class="badge badge-live">LIVE</span>
-            <span class="badge badge-type">AI App · Deployed</span>
-          </div>
-        </div>
-        <h3 class="card-title">NaijaTrip AI — Nigeria Travel Intelligence</h3>
-        <p class="card-desc">A travel intelligence app covering all 36 Nigerian states and the FCT, combining an LLM with live traffic, weather, exchange rate, and advisory feeds to deliver route briefs, fare estimates, and safety guidance in real time.</p>
-        <div class="card-tags">
-          <span class="tag">React</span>
-          <span class="tag">Groq LLM</span>
-          <span class="tag">Node/Express</span>
-          <span class="tag">TomTom API</span>
-          <span class="tag">Vercel</span>
-          <span class="tag">Prompt Engineering</span>
-        </div>
-        <div class="card-links">
-          <a href="https://naija-trip-ai.vercel.app/" class="card-link" target="_blank" rel="noopener">Live App ↗</a>
-          <a href="https://github.com/Onabanjomicheal/naija-trip-ai" class="card-link" target="_blank" rel="noopener">GitHub ↗</a>
-        </div>
+    <div class="project-card" data-tags="ai av">
+      <div class="project-num">002</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">AI App</span><span class="project-badge">AV/EV</span></div>
+        <div class="project-title">AV/EV Consultant — AI Advisory Platform for Mobility Practitioners</div>
+        <div class="project-desc">Closes the gap between emerging mobility technology and the people responsible for deploying it. Delivers on-demand, context-aware intelligence on AV and EV systems via a RAG pipeline — so practitioners and policymakers can move from question to informed decision without manual research overhead.</div>
+        <div class="project-tags"><span class="tag">FastAPI</span><span class="tag">Streamlit</span><span class="tag">LangChain</span><span class="tag">ChromaDB</span><span class="tag">RAG</span><span class="tag">Groq LLM</span><span class="tag">HuggingFace</span><span class="tag">Supabase</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/ai-av-ev-consultant" target="_blank" class="proj-link">GitHub ↗</a></div>
       </div>
-
-      <!-- 002 AV/EV Consultant — NEW -->
-      <div class="project-card" data-tags="ai av">
-        <div class="card-meta">
-          <span class="card-num">002</span>
-          <div class="card-badges">
-            <span class="badge badge-type">AI App · AV/EV</span>
-          </div>
-        </div>
-        <h3 class="card-title">AV/EV Consultant — AI Advisory Platform for Mobility Practitioners</h3>
-        <p class="card-desc">The gap between emerging mobility technology and the people responsible for deploying it is a policy and operations risk. This platform closes that gap. It delivers on-demand, context-aware intelligence on autonomous and electric vehicle systems — drawing from a curated knowledge base through a RAG pipeline — so practitioners and policymakers can move from question to informed decision without the overhead of manual research. The result is a persistent, scalable advisory layer that elevates the quality of every AV and EV decision made downstream.</p>
-        <div class="card-tags">
-          <span class="tag">FastAPI</span>
-          <span class="tag">Streamlit</span>
-          <span class="tag">LangChain</span>
-          <span class="tag">ChromaDB</span>
-          <span class="tag">RAG</span>
-          <span class="tag">Groq LLM</span>
-          <span class="tag">HuggingFace Embeddings</span>
-          <span class="tag">Upstash Redis</span>
-          <span class="tag">Supabase</span>
-          <span class="tag">Python</span>
-        </div>
-        <div class="card-links">
-          <a href="https://github.com/Onabanjomicheal/ai-av-ev-consultant" class="card-link" target="_blank" rel="noopener">GitHub ↗</a>
-        </div>
-      </div>
-
-      <!-- 003 Customer Satisfaction -->
-      <div class="project-card" data-tags="mlops">
-        <div class="card-meta">
-          <span class="card-num">003</span>
-          <div class="card-badges"><span class="badge badge-type">MLOps · Production</span></div>
-        </div>
-        <h3 class="card-title">Customer Satisfaction<br>Prediction to Production</h3>
-        <p class="card-desc">Predicts customer satisfaction in e-commerce and segments outcomes into actionable risk tiers — green for automated approval, yellow for proactive outreach, and red for urgent intervention. The champion model, CatBoost, achieved a ROC-AUC of 0.72 and captured 71% of dissatisfied customers before they escalated.</p>
-        <div class="card-tags">
-          <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">MLOps</span><span class="tag">CI/CD</span><span class="tag">Production</span>
-        </div>
-        <div class="card-links">
-          <a href="https://github.com/Onabanjomicheal/Customer_Satisfaction_Prediction_to_Production" class="card-link" target="_blank" rel="noopener">View Repository ↗</a>
-        </div>
-      </div>
-
-      <!-- 004 Adaptive Traffic Signal -->
-      <div class="project-card" data-tags="transport">
-        <div class="card-meta">
-          <span class="card-num">004</span>
-          <div class="card-badges"><span class="badge badge-type">Deep RL · Lagos</span></div>
-        </div>
-        <h3 class="card-title">Adaptive Traffic Signal<br>Control with DQN</h3>
-        <p class="card-desc">A Deep Q-Network agent trained on Lagos intersection data in SUMO. Compared against fixed-time controllers, the RL agent achieved a <strong>24% reduction in average travel time</strong> — replacing static signal timing with responsive, data-driven urban control.</p>
-        <div class="card-tags">
-          <span class="tag">Deep RL</span><span class="tag">DQN</span><span class="tag">SUMO</span><span class="tag">TraCI</span><span class="tag">Lagos</span>
-        </div>
-        <div class="card-links">
-          <a href="https://github.com/Onabanjomicheal/Adaptive-Traffic-Signal-DQN" class="card-link" target="_blank" rel="noopener">View Repository ↗</a>
-        </div>
-      </div>
-
-      <!-- 005 Third Mainland Bridge -->
-      <div class="project-card" data-tags="transport av">
-        <div class="card-meta">
-          <span class="card-num">005</span>
-          <div class="card-badges"><span class="badge badge-type">Research · Lagos</span></div>
-        </div>
-        <h3 class="card-title">Third Mainland Bridge<br>— AV/HDV Simulation</h3>
-        <p class="card-desc">Microsimulation of one of Africa's longest bridges, calibrated to ~117,000 vehicles/day. A 10% autonomous vehicle penetration scenario demonstrated a <strong>20.72% reduction in traffic emissions</strong> — evidence-based intelligence for AV policy on critical Lagos infrastructure.</p>
-        <div class="card-tags">
-          <span class="tag">SUMO</span><span class="tag">Python</span><span class="tag">Autonomous Vehicles</span><span class="tag">Emissions</span>
-        </div>
-        <div class="card-links">
-          <a href="https://github.com/Onabanjomicheal/third-mainland-av-hdv-simulation" class="card-link" target="_blank" rel="noopener">View Repository ↗</a>
-        </div>
-      </div>
-
-      <!-- 006 Car-Following -->
-      <div class="project-card" data-tags="av">
-        <div class="card-meta">
-          <span class="card-num">006</span>
-          <div class="card-badges"><span class="badge badge-type">AV · Simulation</span></div>
-        </div>
-        <h3 class="card-title">AV Car-Following<br>& Lane-Changing</h3>
-        <p class="card-desc">Models how autonomous vehicles make longitudinal and lateral decisions — following distance, speed adaptation, and lane-change triggering — and studies the effect on corridor-level traffic flow and safety.</p>
-        <div class="card-tags">
-          <span class="tag">Python</span><span class="tag">AV Modelling</span><span class="tag">Car Following</span><span class="tag">Lane Changing</span>
-        </div>
-        <div class="card-links">
-          <a href="https://github.com/Onabanjomicheal/Autonomous_Vehicle--Car_Following-and-Lane_Changing-Mini-Project" class="card-link" target="_blank" rel="noopener">View Repository ↗</a>
-        </div>
-      </div>
-
-      <!-- 007 Delhivery -->
-      <div class="project-card" data-tags="logistics">
-        <div class="card-meta">
-          <span class="card-num">007</span>
-          <div class="card-badges"><span class="badge badge-type">Logistics · EDA</span></div>
-        </div>
-        <h3 class="card-title">Delivery Logistics Analysis<br>— Delhivery Network</h3>
-        <p class="card-desc">Analyses Delhivery's logistics network to identify the key drivers behind delivery delays, surfacing patterns across trip types, geography, and time to give operations teams a clear basis for reducing late shipments.</p>
-        <div class="card-tags">
-          <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Seaborn</span><span class="tag">EDA</span><span class="tag">Supply Chain</span>
-        </div>
-        <div class="card-links">
-          <a href="https://github.com/Onabanjomicheal/Delivery-Logistics-Data-Analysis" class="card-link" target="_blank" rel="noopener">View Repository ↗</a>
-        </div>
-      </div>
-
-      <!-- 008 Compliance QA -->
-      <div class="project-card" data-tags="logistics ai">
-        <div class="card-meta">
-          <span class="card-num">008</span>
-          <div class="card-badges"><span class="badge badge-type">Logistics · AI App</span></div>
-        </div>
-        <h3 class="card-title">Compliance QA Pipeline<br>— Logistics Video Intelligence</h3>
-        <p class="card-desc">Logistics operations lose significant value to compliance failures that go undetected until it's too late. This system watches live video feeds from logistics facilities and automatically flags violations in real time — no human reviewer required. It reads the environment, cross-references the applicable regulations, and delivers a structured compliance report, turning what was a manual audit process into a continuous, automated one.</p>
-        <div class="card-tags">
-          <span class="tag">Azure AI Vision</span><span class="tag">Azure OpenAI</span><span class="tag">Azure AI Search</span><span class="tag">RAG</span><span class="tag">FastAPI</span><span class="tag">Python</span><span class="tag">OpenTelemetry</span>
-        </div>
-        <div class="card-links">
-          <a href="https://github.com/Onabanjomicheal/logistics-video-compliance" class="card-link" target="_blank" rel="noopener">GitHub ↗</a>
-        </div>
-      </div>
-
     </div>
+
+    <div class="project-card" data-tags="mlops">
+      <div class="project-num">003</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">MLOps</span><span class="project-badge">Production</span></div>
+        <div class="project-title">Customer Satisfaction Prediction to Production</div>
+        <div class="project-desc">Predicts customer satisfaction in e-commerce and segments outcomes into actionable risk tiers — green for automated approval, yellow for proactive outreach, red for urgent intervention. Champion model CatBoost achieved ROC-AUC of 0.72, capturing 71% of dissatisfied customers before escalation.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">MLOps</span><span class="tag">CI/CD</span><span class="tag">Production</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Customer_Satisfaction_Prediction_to_Production" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="transport av">
+      <div class="project-num">004</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Deep RL</span><span class="project-badge">Lagos</span></div>
+        <div class="project-title">Adaptive Traffic Signal Control with DQN</div>
+        <div class="project-desc">A Deep Q-Network agent trained on Lagos intersection data in SUMO. Compared against fixed-time controllers, the RL agent achieved a 24% reduction in average travel time — replacing static signal timing with responsive, data-driven urban control.</div>
+        <div class="project-tags"><span class="tag">Deep RL</span><span class="tag">DQN</span><span class="tag">SUMO</span><span class="tag">TraCI</span><span class="tag">Lagos</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Adaptive-Traffic-Signal-DQN" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="transport av">
+      <div class="project-num">005</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Research</span><span class="project-badge">Lagos</span></div>
+        <div class="project-title">Third Mainland Bridge — AV/HDV Simulation</div>
+        <div class="project-desc">Microsimulation of one of Africa's longest bridges, calibrated to ~117,000 vehicles/day. A 10% autonomous vehicle penetration scenario demonstrated a 20.72% reduction in traffic emissions — evidence-based intelligence for AV policy on critical Lagos infrastructure.</div>
+        <div class="project-tags"><span class="tag">SUMO</span><span class="tag">Python</span><span class="tag">Autonomous Vehicles</span><span class="tag">Emissions</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/third-mainland-av-hdv-simulation" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="av">
+      <div class="project-num">006</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">AV</span><span class="project-badge">Simulation</span></div>
+        <div class="project-title">AV Car-Following &amp; Lane-Changing</div>
+        <div class="project-desc">Models how autonomous vehicles make longitudinal and lateral decisions — following distance, speed adaptation, and lane-change triggering — and studies the effect on corridor-level traffic flow and safety.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">AV Modelling</span><span class="tag">Car Following</span><span class="tag">Lane Changing</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Autonomous_Vehicle--Car_Following-and-Lane_Changing-Mini-Project" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="logistics">
+      <div class="project-num">007</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Logistics</span><span class="project-badge">EDA</span></div>
+        <div class="project-title">Delivery Logistics Analysis — Delhivery Network</div>
+        <div class="project-desc">Analyses Delhivery's logistics network to identify the key drivers behind delivery delays, surfacing patterns across trip types, geography, and time to give operations teams a clear basis for reducing late shipments.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Seaborn</span><span class="tag">EDA</span><span class="tag">Supply Chain</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Delivery-Logistics-Data-Analysis" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="logistics ai">
+      <div class="project-num">008</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Logistics</span><span class="project-badge">AI App</span></div>
+        <div class="project-title">Compliance QA Pipeline — Logistics Video Intelligence</div>
+        <div class="project-desc">Logistics operations lose significant value to compliance failures that go undetected until too late. This system watches live video feeds from logistics facilities and automatically flags violations in real time — turning a manual audit process into a continuous, automated one.</div>
+        <div class="project-tags"><span class="tag">Azure AI Vision</span><span class="tag">Azure OpenAI</span><span class="tag">Azure AI Search</span><span class="tag">RAG</span><span class="tag">FastAPI</span><span class="tag">Python</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/logistics-video-compliance" target="_blank" class="proj-link">GitHub ↗</a></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="articles">
+  <p class="section-eyebrow">Thought leadership</p>
+  <h2 class="section-title">Articles &amp; <em>Insights</em></h2>
+  <p class="articles-intro">
+    I write about electric vehicles, battery technology, sustainable mobility, intelligent transportation systems, and emerging transportation technologies — connecting engineering depth with real-world deployment challenges.
+  </p>
+  <div class="articles-grid">
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Battery Technology</div>
+      <div class="article-title">Battery Swapping: Opportunity or Hype?</div>
+      <div class="article-excerpt">A technical breakdown of battery-swap infrastructure — energy density trade-offs, grid implications, and where the model genuinely works vs. where it falls short.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Charging Infrastructure</div>
+      <div class="article-title">Understanding EV Charging Infrastructure</div>
+      <div class="article-excerpt">From Level 1 AC to 350kW DC fast chargers — how power electronics, grid capacity, and demand forecasting shape every charging deployment decision.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Autonomous Vehicles</div>
+      <div class="article-title">Autonomous Vehicles in Mixed Traffic Conditions</div>
+      <div class="article-excerpt">What happens when AV penetration is low — and how mixed AV/HDV traffic flows behave differently from theoretical models. Lessons from Lagos microsimulation.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Emerging Economies</div>
+      <div class="article-title">Transportation Electrification in Emerging Economies</div>
+      <div class="article-excerpt">Why the EV adoption playbook written for Europe and North America fails in West Africa — and what an Africa-first electrification strategy actually looks like.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Power Electronics</div>
+      <div class="article-title">Inside the EV Inverter: What Engineers Need to Know</div>
+      <div class="article-excerpt">A deep dive into how motor-drive inverters work, the role of SiC MOSFETs, thermal management, and why inverter efficiency is the hidden factor in EV range.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Grid Integration</div>
+      <div class="article-title">Grid-Aware EV Deployment: Why Timing Matters</div>
+      <div class="article-excerpt">Uncoordinated EV charging creates dangerous demand spikes. This piece covers vehicle-to-grid concepts, smart charging protocols, and what utilities need from fleet operators.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+  </div>
+  <div class="articles-footer">
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="substack-cta">
+      Read all articles on Electric Vehicle Demystify →
+    </a>
+    <span class="articles-desc">EV · Battery · ITS · Mobility Research</span>
   </div>
 </section>
 
 <section id="skills">
-  <div class="container">
-    <h2>What I <em>actually</em> know</h2>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <h4>Transport simulation and modelling</h4>
-        <div class="skill-list">
-          <div class="skill-item">SUMO Microsimulation</div>
-          <div class="skill-item">Deep Reinforcement Learning</div>
-          <div class="skill-item">TraCI Python API</div>
-          <div class="skill-item">QGIS / GeoPandas</div>
-          <div class="skill-item">AV Behaviour Modelling</div>
-          <div class="skill-item">GTFS Data</div>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4>Machine learning and AI engineering</h4>
-        <div class="skill-list">
-          <div class="skill-item">TensorFlow / PyTorch</div>
-          <div class="skill-item">Scikit-learn</div>
-          <div class="skill-item">Stable-Baselines3 / DQN</div>
-          <div class="skill-item">Hugging Face Transformers</div>
-          <div class="skill-item">LLM APIs</div>
-          <div class="skill-item">Computer Vision / CNN</div>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4>MLOps and cloud deployment</h4>
-        <div class="skill-list">
-          <div class="skill-item">AWS / Azure / Vercel</div>
-          <div class="skill-item">DVC / MLflow / Kubeflow</div>
-          <div class="skill-item">GitHub Actions / CI-CD</div>
-          <div class="skill-item">Docker</div>
-        </div>
-      </div>
+  <p class="section-eyebrow">Capabilities</p>
+  <h2 class="section-title">What I <em>actually</em> know</h2>
+  <div class="skills-cols">
+    <div class="skill-group">
+      <h3>Transport simulation &amp; modelling</h3>
+      <ul class="skill-list">
+        <li>SUMO Microsimulation</li><li>Deep Reinforcement Learning</li><li>TraCI Python API</li>
+        <li>QGIS / GeoPandas</li><li>AV Behaviour Modelling</li><li>GTFS Data</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>Machine learning &amp; AI engineering</h3>
+      <ul class="skill-list">
+        <li>TensorFlow / PyTorch</li><li>Scikit-learn</li><li>Stable-Baselines3 / DQN</li>
+        <li>Hugging Face Transformers</li><li>LLM APIs</li><li>Computer Vision / CNN</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>MLOps &amp; cloud deployment</h3>
+      <ul class="skill-list">
+        <li>AWS / Azure / Vercel</li><li>DVC / MLflow / Kubeflow</li>
+        <li>GitHub Actions / CI-CD</li><li>Docker</li>
+      </ul>
     </div>
   </div>
 </section>
 
 <section id="contact">
-  <div class="container">
-    <h2>Get in <em>touch.</em></h2>
-    <p style="color:var(--muted);margin-bottom:2rem;max-width:520px;">Open to ML engineering, transportation AI, and research roles. Available for remote opportunities and research collaborations.</p>
-    <div class="contact-grid">
-      <a href="mailto:Onabanjomicheal01@gmail.com" class="contact-card">
-        <div class="contact-label">Email</div>
-        <div class="contact-value">Onabanjomicheal01@gmail.com</div>
+  <p class="section-eyebrow">Get in touch</p>
+  <h2 class="section-title">Let's <em>connect.</em></h2>
+  <div class="contact-grid">
+    <div class="contact-copy">
+      <p>Open to ML engineering, transportation AI, and research roles. Available for remote opportunities and research collaborations.</p>
+      <p>If you're working on intelligent transportation systems, EV deployment, or African mobility — I'd like to hear from you.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:Onabanjomicheal01@gmail.com" class="contact-link">
+        <span class="contact-link-icon">✉</span>
+        <span class="contact-link-label">Email</span>
+        <span class="contact-link-value">Onabanjomicheal01@gmail.com</span>
       </a>
-      <a href="https://www.linkedin.com/in/micheal-onabanjo" target="_blank" class="contact-card">
-        <div class="contact-label">LinkedIn</div>
-        <div class="contact-value">linkedin.com/in/micheal-onabanjo</div>
+      <a href="https://www.linkedin.com/in/micheal-onabanjo" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">in</span>
+        <span class="contact-link-label">LinkedIn</span>
+        <span class="contact-link-value">micheal-onabanjo</span>
       </a>
-      <a href="https://github.com/Onabanjomicheal" target="_blank" class="contact-card">
-        <div class="contact-label">GitHub</div>
-        <div class="contact-value">github.com/Onabanjomicheal</div>
+      <a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">⌥</span>
+        <span class="contact-link-label">GitHub</span>
+        <span class="contact-link-value">Onabanjomicheal</span>
       </a>
-      <a href="https://twitter.com/onabanjomico" target="_blank" class="contact-card">
-        <div class="contact-label">Twitter / X</div>
-        <div class="contact-value">@onabanjomico</div>
+      <a href="https://twitter.com/onabanjomico" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">𝕏</span>
+        <span class="contact-link-label">Twitter / X</span>
+        <span class="contact-link-value">@onabanjomico</span>
+      </a>
+      <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="contact-link substack-link">
+        <span class="contact-link-icon">✍</span>
+        <span class="contact-link-label">Substack</span>
+        <span class="contact-link-value">Electric Vehicle Demystify</span>
       </a>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="container">
-    <span>© 2026 Onabanjo Michael Oluwatobi · Lagos, Nigeria 🇳🇬· Open to Remote · WAT (UTC+1)</span>
-    <div class="footer-links">
-      <a href="#home">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="https://github.com/Onabanjomicheal" target="_blank">GitHub</a>
-      <a href="#home">↑</a>
-    </div>
-  </div>
+  © 2026 Onabanjo Michael Oluwatobi &nbsp;·&nbsp; Lagos, Nigeria 🇳🇬 &nbsp;·&nbsp; Open to Remote &nbsp;·&nbsp; WAT (UTC+1)
+  &nbsp;·&nbsp; <a href="#home">↑ Back to top</a>
 </footer>
 
 <script>
-  const btns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.project-card');
-  btns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      btns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      cards.forEach(card => {
-        if (filter === 'all') {
-          card.classList.remove('hidden');
-        } else {
-          const tags = card.dataset.tags || '';
-          card.classList.toggle('hidden', !tags.split(' ').includes(filter));
-        }
-      });
-    });
+function filterProjects(tag, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(card => {
+    const tags = card.dataset.tags || '';
+    card.style.display = (tag === 'all' || tags.includes(tag)) ? 'grid' : 'none';
   });
+}
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
 </script>
-
 </body>
-</html>
+  </html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onabanjo Michael — Transport & ML Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d0d; --bg2: #141414; --bg3: #1a1a1a;
+      --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.16);
+      --text: #f0ede6; --muted: #7a7870;
+      --accent: #c8ff5f; --accent2: #3ddc97;
+      --sans: 'Inter', system-ui, sans-serif;
+      --serif: 'DM Serif Display', Georgia, serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 60px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(13,13,13,0.92); backdrop-filter: blur(12px);
+    }
+    .nav-logo { font-family: var(--serif); font-size: 1.15rem; color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.8125rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.nav-articles { color: #ff7033; }
+    .nav-links a.nav-articles:hover { color: #ffb38a; }
+
+    section { padding: 6rem 2.5rem; max-width: 960px; margin: 0 auto; }
+    #home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 100px; max-width: 960px; }
+
+    .hero-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.5rem; }
+    .hero-label span { display: inline-block; width: 24px; height: 1px; background: var(--accent2); vertical-align: middle; margin-right: 10px; }
+    .hero-title { font-family: var(--serif); font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1.03; letter-spacing: -0.02em; margin-bottom: 1.5rem; color: var(--text); }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-bio { max-width: 640px; color: #a09d96; font-size: 1.05rem; line-height: 1.75; margin-bottom: 1rem; }
+    .hero-ieee { max-width: 640px; color: #7a7870; font-size: 0.925rem; line-height: 1.7; margin-bottom: 2.5rem; }
+    .hero-ieee a { color: var(--accent2); text-decoration: none; }
+    .hero-ieee a:hover { text-decoration: underline; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+    .btn { display: inline-flex; align-items: center; gap: 7px; padding: 0.6rem 1.25rem; border: 1px solid var(--border-hover); border-radius: 4px; font-size: 0.8125rem; font-weight: 500; text-decoration: none; color: var(--muted); background: transparent; transition: color 0.2s, border-color 0.2s, background 0.2s; }
+    .btn:hover { color: var(--text); border-color: rgba(255,255,255,0.28); background: var(--bg2); }
+    .btn-primary { background: var(--accent2); color: #062613; border-color: var(--accent2); font-weight: 600; }
+    .btn-primary:hover { background: var(--accent); border-color: var(--accent); color: #1a2e0a; }
+    .btn-substack { border-color: rgba(255,112,51,0.4); color: #ff7033; }
+    .btn-substack:hover { border-color: #ff7033; background: rgba(255,112,51,0.08); color: #ff7033; }
+
+    .section-eyebrow { font-size: 0.725rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+    .section-eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--muted); }
+    h2.section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 3.5rem; color: var(--text); }
+    h2.section-title em { font-style: italic; color: var(--accent); }
+
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 3rem; }
+    .filter-btn { padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 2rem; font-size: 0.78rem; background: transparent; color: var(--muted); cursor: pointer; transition: all 0.18s; font-family: var(--sans); }
+    .filter-btn:hover, .filter-btn.active { border-color: var(--accent2); color: var(--accent2); background: rgba(61,220,151,0.06); }
+    .projects-grid { display: flex; flex-direction: column; gap: 1px; border-top: 1px solid var(--border); }
+    .project-card { display: grid; grid-template-columns: 60px 1fr; gap: 0 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); transition: background 0.18s, padding 0.18s; }
+    .project-card:hover { background: var(--bg2); padding-left: 1rem; padding-right: 1rem; border-radius: 4px; }
+    .project-num { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; padding-top: 0.3rem; }
+    .project-meta { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+    .project-badge { font-size: 0.67rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); }
+    .project-badge.live { border-color: rgba(61,220,151,0.4); color: var(--accent2); background: rgba(61,220,151,0.07); }
+    .project-title { font-size: 1.1rem; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; line-height: 1.3; }
+    .project-desc { font-size: 0.875rem; color: #7a7870; line-height: 1.65; margin-bottom: 1rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.875rem; }
+    .tag { font-size: 0.68rem; padding: 2px 7px; border-radius: 3px; background: var(--bg3); color: #666360; border: 1px solid var(--border); }
+    .project-links { display: flex; gap: 0.75rem; }
+    .proj-link { font-size: 0.78rem; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 0.18s, border-color 0.18s; }
+    .proj-link:hover { color: var(--accent2); border-color: var(--accent2); }
+
+    #articles { background: var(--bg); }
+    .articles-intro { font-size: 1.05rem; color: #7a7870; max-width: 580px; margin-bottom: 3rem; line-height: 1.75; }
+    .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
+    .article-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; text-decoration: none; display: flex; flex-direction: column; gap: 0.75rem; transition: border-color 0.2s, background 0.2s; }
+    .article-card:hover { border-color: rgba(255,112,51,0.35); background: var(--bg3); }
+    .article-topic { font-size: 0.67rem; letter-spacing: 0.1em; text-transform: uppercase; color: #ff7033; }
+    .article-title { font-size: 0.975rem; font-weight: 500; color: var(--text); line-height: 1.4; }
+    .article-excerpt { font-size: 0.825rem; color: var(--muted); line-height: 1.6; flex: 1; }
+    .article-cta { font-size: 0.78rem; color: #ff7033; display: flex; align-items: center; gap: 5px; }
+    .articles-footer { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .substack-cta { display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem; color: #ff7033; text-decoration: none; font-weight: 500; transition: gap 0.2s; }
+    .substack-cta:hover { gap: 12px; }
+    .articles-desc { font-size: 0.825rem; color: var(--muted); }
+
+    .skills-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2.5rem; }
+    .skill-group h3 { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.25rem; }
+    .skill-list { list-style: none; }
+    .skill-list li { font-size: 0.875rem; color: #8a8780; padding: 0.4rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+    .skill-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--border-hover); flex-shrink: 0; }
+
+    #contact { border-top: 1px solid var(--border); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .contact-copy p { color: #7a7870; font-size: 0.925rem; line-height: 1.75; margin-bottom: 1.25rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-link { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--muted); font-size: 0.875rem; transition: color 0.18s; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 4px; background: var(--bg2); }
+    .contact-link:hover { color: var(--text); border-color: var(--border-hover); }
+    .contact-link.substack-link:hover { color: #ff7033; border-color: rgba(255,112,51,0.3); }
+    .contact-link-icon { font-size: 1rem; width: 20px; text-align: center; }
+    .contact-link-label { flex: 1; }
+    .contact-link-value { font-size: 0.8rem; color: #555350; }
+
+    footer { text-align: center; padding: 2.5rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: #444240; }
+    footer a { color: #555350; text-decoration: none; }
+    footer a:hover { color: var(--muted); }
+
+    @media (max-width: 680px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+      section { padding: 4rem 1.25rem; }
+      #home { padding: 100px 1.25rem 4rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .project-card { grid-template-columns: 1fr; }
+      .project-num { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo">M. Onabanjo.</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#articles" class="nav-articles">✍ Articles</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<section id="home">
+  <p class="hero-label"><span></span>Lagos, Nigeria · Open to Work</p>
+  <h1 class="hero-title">Onabanjo<br><em>Michael.</em></h1>
+  <p class="hero-bio">
+    I'm focused on how transport actually works — especially the informal systems that move most people across African cities. A big part of my work is capturing real-time data from these systems and using it to make transport clean, safer, and easier to navigate. At the core: identifying key routes, integrating EV technologies, and building planning frameworks for informal and multimodal systems.
+  </p>
+  <p class="hero-ieee">
+    Editorial Board, <a href="https://ieee-itss.org/pub/its-podcasts/" target="_blank" rel="noopener">IEEE ITS Society Podcast</a> ·
+    Research Assistant, <a href="https://www.tratsedi.com" target="_blank" rel="noopener">TRATSEDI</a> ·
+    B.Eng. Electrical &amp; Electronics Engineering, OOU
+  </p>
+  <div class="hero-btns">
+    <a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener" class="btn">⌥ GitHub</a>
+    <a href="https://www.linkedin.com/in/micheal-onabanjo" target="_blank" rel="noopener" class="btn">in LinkedIn</a>
+    <a href="https://twitter.com/onabanjomico" target="_blank" rel="noopener" class="btn">𝕏 Twitter</a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="btn btn-substack">✍ Substack</a>
+    <a href="mailto:Onabanjomicheal01@gmail.com" class="btn btn-primary">Get in touch →</a>
+  </div>
+</section>
+
+<section id="projects">
+  <p class="section-eyebrow">Work I've built</p>
+  <h2 class="section-title">Projects &amp; <em>Research</em></h2>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterProjects('all',this)">All</button>
+    <button class="filter-btn" onclick="filterProjects('transport',this)">Transport</button>
+    <button class="filter-btn" onclick="filterProjects('logistics',this)">Logistics</button>
+    <button class="filter-btn" onclick="filterProjects('mlops',this)">MLOps</button>
+    <button class="filter-btn" onclick="filterProjects('av',this)">Autonomous Vehicles</button>
+    <button class="filter-btn" onclick="filterProjects('ai',this)">AI Apps</button>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card" data-tags="ai transport">
+      <div class="project-num">001</div>
+      <div>
+        <div class="project-meta"><span class="project-badge live">LIVE · AI App</span><span class="project-badge">Deployed</span></div>
+        <div class="project-title">NaijaTrip AI — Nigeria Travel Intelligence</div>
+        <div class="project-desc">A travel intelligence app covering all 36 Nigerian states and the FCT, combining an LLM with live traffic, weather, exchange rate, and advisory feeds to deliver route briefs, fare estimates, and safety guidance in real time.</div>
+        <div class="project-tags"><span class="tag">React</span><span class="tag">Groq LLM</span><span class="tag">Node/Express</span><span class="tag">TomTom API</span><span class="tag">Vercel</span><span class="tag">Prompt Engineering</span></div>
+        <div class="project-links"><a href="https://naija-trip-ai.vercel.app/" target="_blank" class="proj-link">Live App ↗</a><a href="https://github.com/Onabanjomicheal/naija-trip-ai" target="_blank" class="proj-link">GitHub ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="ai av">
+      <div class="project-num">002</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">AI App</span><span class="project-badge">AV/EV</span></div>
+        <div class="project-title">AV/EV Consultant — AI Advisory Platform for Mobility Practitioners</div>
+        <div class="project-desc">Closes the gap between emerging mobility technology and the people responsible for deploying it. Delivers on-demand, context-aware intelligence on AV and EV systems via a RAG pipeline — so practitioners and policymakers can move from question to informed decision without manual research overhead.</div>
+        <div class="project-tags"><span class="tag">FastAPI</span><span class="tag">Streamlit</span><span class="tag">LangChain</span><span class="tag">ChromaDB</span><span class="tag">RAG</span><span class="tag">Groq LLM</span><span class="tag">HuggingFace</span><span class="tag">Supabase</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/ai-av-ev-consultant" target="_blank" class="proj-link">GitHub ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="mlops">
+      <div class="project-num">003</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">MLOps</span><span class="project-badge">Production</span></div>
+        <div class="project-title">Customer Satisfaction Prediction to Production</div>
+        <div class="project-desc">Predicts customer satisfaction in e-commerce and segments outcomes into actionable risk tiers — green for automated approval, yellow for proactive outreach, red for urgent intervention. Champion model CatBoost achieved ROC-AUC of 0.72, capturing 71% of dissatisfied customers before escalation.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">MLOps</span><span class="tag">CI/CD</span><span class="tag">Production</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Customer_Satisfaction_Prediction_to_Production" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="transport av">
+      <div class="project-num">004</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Deep RL</span><span class="project-badge">Lagos</span></div>
+        <div class="project-title">Adaptive Traffic Signal Control with DQN</div>
+        <div class="project-desc">A Deep Q-Network agent trained on Lagos intersection data in SUMO. Compared against fixed-time controllers, the RL agent achieved a 24% reduction in average travel time — replacing static signal timing with responsive, data-driven urban control.</div>
+        <div class="project-tags"><span class="tag">Deep RL</span><span class="tag">DQN</span><span class="tag">SUMO</span><span class="tag">TraCI</span><span class="tag">Lagos</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Adaptive-Traffic-Signal-DQN" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="transport av">
+      <div class="project-num">005</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Research</span><span class="project-badge">Lagos</span></div>
+        <div class="project-title">Third Mainland Bridge — AV/HDV Simulation</div>
+        <div class="project-desc">Microsimulation of one of Africa's longest bridges, calibrated to ~117,000 vehicles/day. A 10% autonomous vehicle penetration scenario demonstrated a 20.72% reduction in traffic emissions — evidence-based intelligence for AV policy on critical Lagos infrastructure.</div>
+        <div class="project-tags"><span class="tag">SUMO</span><span class="tag">Python</span><span class="tag">Autonomous Vehicles</span><span class="tag">Emissions</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/third-mainland-av-hdv-simulation" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="av">
+      <div class="project-num">006</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">AV</span><span class="project-badge">Simulation</span></div>
+        <div class="project-title">AV Car-Following &amp; Lane-Changing</div>
+        <div class="project-desc">Models how autonomous vehicles make longitudinal and lateral decisions — following distance, speed adaptation, and lane-change triggering — and studies the effect on corridor-level traffic flow and safety.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">AV Modelling</span><span class="tag">Car Following</span><span class="tag">Lane Changing</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Autonomous_Vehicle--Car_Following-and-Lane_Changing-Mini-Project" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="logistics">
+      <div class="project-num">007</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Logistics</span><span class="project-badge">EDA</span></div>
+        <div class="project-title">Delivery Logistics Analysis — Delhivery Network</div>
+        <div class="project-desc">Analyses Delhivery's logistics network to identify the key drivers behind delivery delays, surfacing patterns across trip types, geography, and time to give operations teams a clear basis for reducing late shipments.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Seaborn</span><span class="tag">EDA</span><span class="tag">Supply Chain</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Delivery-Logistics-Data-Analysis" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="logistics ai">
+      <div class="project-num">008</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Logistics</span><span class="project-badge">AI App</span></div>
+        <div class="project-title">Compliance QA Pipeline — Logistics Video Intelligence</div>
+        <div class="project-desc">Logistics operations lose significant value to compliance failures that go undetected until too late. This system watches live video feeds from logistics facilities and automatically flags violations in real time — turning a manual audit process into a continuous, automated one.</div>
+        <div class="project-tags"><span class="tag">Azure AI Vision</span><span class="tag">Azure OpenAI</span><span class="tag">Azure AI Search</span><span class="tag">RAG</span><span class="tag">FastAPI</span><span class="tag">Python</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/logistics-video-compliance" target="_blank" class="proj-link">GitHub ↗</a></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="articles">
+  <p class="section-eyebrow">Thought leadership</p>
+  <h2 class="section-title">Articles &amp; <em>Insights</em></h2>
+  <p class="articles-intro">
+    I write about electric vehicles, battery technology, sustainable mobility, intelligent transportation systems, and emerging transportation technologies — connecting engineering depth with real-world deployment challenges.
+  </p>
+  <div class="articles-grid">
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Battery Technology</div>
+      <div class="article-title">Battery Swapping: Opportunity or Hype?</div>
+      <div class="article-excerpt">A technical breakdown of battery-swap infrastructure — energy density trade-offs, grid implications, and where the model genuinely works vs. where it falls short.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Charging Infrastructure</div>
+      <div class="article-title">Understanding EV Charging Infrastructure</div>
+      <div class="article-excerpt">From Level 1 AC to 350kW DC fast chargers — how power electronics, grid capacity, and demand forecasting shape every charging deployment decision.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Autonomous Vehicles</div>
+      <div class="article-title">Autonomous Vehicles in Mixed Traffic Conditions</div>
+      <div class="article-excerpt">What happens when AV penetration is low — and how mixed AV/HDV traffic flows behave differently from theoretical models. Lessons from Lagos microsimulation.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Emerging Economies</div>
+      <div class="article-title">Transportation Electrification in Emerging Economies</div>
+      <div class="article-excerpt">Why the EV adoption playbook written for Europe and North America fails in West Africa — and what an Africa-first electrification strategy actually looks like.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Power Electronics</div>
+      <div class="article-title">Inside the EV Inverter: What Engineers Need to Know</div>
+      <div class="article-excerpt">A deep dive into how motor-drive inverters work, the role of SiC MOSFETs, thermal management, and why inverter efficiency is the hidden factor in EV range.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Grid Integration</div>
+      <div class="article-title">Grid-Aware EV Deployment: Why Timing Matters</div>
+      <div class="article-excerpt">Uncoordinated EV charging creates dangerous demand spikes. This piece covers vehicle-to-grid concepts, smart charging protocols, and what utilities need from fleet operators.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+  </div>
+  <div class="articles-footer">
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="substack-cta">
+      Read all articles on Electric Vehicle Demystify →
+    </a>
+    <span class="articles-desc">EV · Battery · ITS · Mobility Research</span>
+  </div>
+</section>
+
+<section id="skills">
+  <p class="section-eyebrow">Capabilities</p>
+  <h2 class="section-title">What I <em>actually</em> know</h2>
+  <div class="skills-cols">
+    <div class="skill-group">
+      <h3>Transport simulation &amp; modelling</h3>
+      <ul class="skill-list">
+        <li>SUMO Microsimulation</li><li>Deep Reinforcement Learning</li><li>TraCI Python API</li>
+        <li>QGIS / GeoPandas</li><li>AV Behaviour Modelling</li><li>GTFS Data</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>Machine learning &amp; AI engineering</h3>
+      <ul class="skill-list">
+        <li>TensorFlow / PyTorch</li><li>Scikit-learn</li><li>Stable-Baselines3 / DQN</li>
+        <li>Hugging Face Transformers</li><li>LLM APIs</li><li>Computer Vision / CNN</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>MLOps &amp; cloud deployment</h3>
+      <ul class="skill-list">
+        <li>AWS / Azure / Vercel</li><li>DVC / MLflow / Kubeflow</li>
+        <li>GitHub Actions / CI-CD</li><li>Docker</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <p class="section-eyebrow">Get in touch</p>
+  <h2 class="section-title">Let's <em>connect.</em></h2>
+  <div class="contact-grid">
+    <div class="contact-copy">
+      <p>Open to ML engineering, transportation AI, and research roles. Available for remote opportunities and research collaborations.</p>
+      <p>If you're working on intelligent transportation systems, EV deployment, or African mobility — I'd like to hear from you.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:Onabanjomicheal01@gmail.com" class="contact-link">
+        <span class="contact-link-icon">✉</span>
+        <span class="contact-link-label">Email</span>
+        <span class="contact-link-value">Onabanjomicheal01@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/micheal-onabanjo" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">in</span>
+        <span class="contact-link-label">LinkedIn</span>
+        <span class="contact-link-value">micheal-onabanjo</span>
+      </a>
+      <a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">⌥</span>
+        <span class="contact-link-label">GitHub</span>
+        <span class="contact-link-value">Onabanjomicheal</span>
+      </a>
+      <a href="https://twitter.com/onabanjomico" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">𝕏</span>
+        <span class="contact-link-label">Twitter / X</span>
+        <span class="contact-link-value">@onabanjomico</span>
+      </a>
+      <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="contact-link substack-link">
+        <span class="contact-link-icon">✍</span>
+        <span class="contact-link-label">Substack</span>
+        <span class="contact-link-value">Electric Vehicle Demystify</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Onabanjo Michael Oluwatobi &nbsp;·&nbsp; Lagos, Nigeria 🇳🇬 &nbsp;·&nbsp; Open to Remote &nbsp;·&nbsp; WAT (UTC+1)
+  &nbsp;·&nbsp; <a href="#home">↑ Back to top</a>
+</footer>
+
+<script>
+function filterProjects(tag, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(card => {
+    const tags = card.dataset.tags || '';
+    card.style.display = (tag === 'all' || tags.includes(tag)) ? 'grid' : 'none';
+  });
+}
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+                                           </html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onabanjo Michael — Transport & ML Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d0d; --bg2: #141414; --bg3: #1a1a1a;
+      --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.16);
+      --text: #f0ede6; --muted: #7a7870;
+      --accent: #c8ff5f; --accent2: #3ddc97;
+      --sans: 'Inter', system-ui, sans-serif;
+      --serif: 'DM Serif Display', Georgia, serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 60px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(13,13,13,0.92); backdrop-filter: blur(12px);
+    }
+    .nav-logo { font-family: var(--serif); font-size: 1.15rem; color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.8125rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.nav-articles { color: #ff7033; }
+    .nav-links a.nav-articles:hover { color: #ffb38a; }
+
+    section { padding: 6rem 2.5rem; max-width: 960px; margin: 0 auto; }
+    #home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 100px; max-width: 960px; }
+
+    .hero-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.5rem; }
+    .hero-label span { display: inline-block; width: 24px; height: 1px; background: var(--accent2); vertical-align: middle; margin-right: 10px; }
+    .hero-title { font-family: var(--serif); font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1.03; letter-spacing: -0.02em; margin-bottom: 1.5rem; color: var(--text); }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-bio { max-width: 640px; color: #a09d96; font-size: 1.05rem; line-height: 1.75; margin-bottom: 1rem; }
+    .hero-ieee { max-width: 640px; color: #7a7870; font-size: 0.925rem; line-height: 1.7; margin-bottom: 2.5rem; }
+    .hero-ieee a { color: var(--accent2); text-decoration: none; }
+    .hero-ieee a:hover { text-decoration: underline; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+    .btn { display: inline-flex; align-items: center; gap: 7px; padding: 0.6rem 1.25rem; border: 1px solid var(--border-hover); border-radius: 4px; font-size: 0.8125rem; font-weight: 500; text-decoration: none; color: var(--muted); background: transparent; transition: color 0.2s, border-color 0.2s, background 0.2s; }
+    .btn:hover { color: var(--text); border-color: rgba(255,255,255,0.28); background: var(--bg2); }
+    .btn-primary { background: var(--accent2); color: #062613; border-color: var(--accent2); font-weight: 600; }
+    .btn-primary:hover { background: var(--accent); border-color: var(--accent); color: #1a2e0a; }
+    .btn-substack { border-color: rgba(255,112,51,0.4); color: #ff7033; }
+    .btn-substack:hover { border-color: #ff7033; background: rgba(255,112,51,0.08); color: #ff7033; }
+
+    .section-eyebrow { font-size: 0.725rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+    .section-eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--muted); }
+    h2.section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 3.5rem; color: var(--text); }
+    h2.section-title em { font-style: italic; color: var(--accent); }
+
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 3rem; }
+    .filter-btn { padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 2rem; font-size: 0.78rem; background: transparent; color: var(--muted); cursor: pointer; transition: all 0.18s; font-family: var(--sans); }
+    .filter-btn:hover, .filter-btn.active { border-color: var(--accent2); color: var(--accent2); background: rgba(61,220,151,0.06); }
+    .projects-grid { display: flex; flex-direction: column; gap: 1px; border-top: 1px solid var(--border); }
+    .project-card { display: grid; grid-template-columns: 60px 1fr; gap: 0 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); transition: background 0.18s, padding 0.18s; }
+    .project-card:hover { background: var(--bg2); padding-left: 1rem; padding-right: 1rem; border-radius: 4px; }
+    .project-num { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; padding-top: 0.3rem; }
+    .project-meta { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+    .project-badge { font-size: 0.67rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); }
+    .project-badge.live { border-color: rgba(61,220,151,0.4); color: var(--accent2); background: rgba(61,220,151,0.07); }
+    .project-title { font-size: 1.1rem; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; line-height: 1.3; }
+    .project-desc { font-size: 0.875rem; color: #7a7870; line-height: 1.65; margin-bottom: 1rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.875rem; }
+    .tag { font-size: 0.68rem; padding: 2px 7px; border-radius: 3px; background: var(--bg3); color: #666360; border: 1px solid var(--border); }
+    .project-links { display: flex; gap: 0.75rem; }
+    .proj-link { font-size: 0.78rem; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 0.18s, border-color 0.18s; }
+    .proj-link:hover { color: var(--accent2); border-color: var(--accent2); }
+
+    #articles { background: var(--bg); }
+    .articles-intro { font-size: 1.05rem; color: #7a7870; max-width: 580px; margin-bottom: 3rem; line-height: 1.75; }
+    .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
+    .article-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; text-decoration: none; display: flex; flex-direction: column; gap: 0.75rem; transition: border-color 0.2s, background 0.2s; }
+    .article-card:hover { border-color: rgba(255,112,51,0.35); background: var(--bg3); }
+    .article-topic { font-size: 0.67rem; letter-spacing: 0.1em; text-transform: uppercase; color: #ff7033; }
+    .article-title { font-size: 0.975rem; font-weight: 500; color: var(--text); line-height: 1.4; }
+    .article-excerpt { font-size: 0.825rem; color: var(--muted); line-height: 1.6; flex: 1; }
+    .article-cta { font-size: 0.78rem; color: #ff7033; display: flex; align-items: center; gap: 5px; }
+    .articles-footer { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .substack-cta { display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem; color: #ff7033; text-decoration: none; font-weight: 500; transition: gap 0.2s; }
+    .substack-cta:hover { gap: 12px; }
+    .articles-desc { font-size: 0.825rem; color: var(--muted); }
+
+    .skills-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2.5rem; }
+    .skill-group h3 { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.25rem; }
+    .skill-list { list-style: none; }
+    .skill-list li { font-size: 0.875rem; color: #8a8780; padding: 0.4rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+    .skill-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--border-hover); flex-shrink: 0; }
+
+    #contact { border-top: 1px solid var(--border); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .contact-copy p { color: #7a7870; font-size: 0.925rem; line-height: 1.75; margin-bottom: 1.25rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-link { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--muted); font-size: 0.875rem; transition: color 0.18s; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 4px; background: var(--bg2); }
+    .contact-link:hover { color: var(--text); border-color: var(--border-hover); }
+    .contact-link.substack-link:hover { color: #ff7033; border-color: rgba(255,112,51,0.3); }
+    .contact-link-icon { font-size: 1rem; width: 20px; text-align: center; }
+    .contact-link-label { flex: 1; }
+    .contact-link-value { font-size: 0.8rem; color: #555350; }
+
+    footer { text-align: center; padding: 2.5rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: #444240; }
+    footer a { color: #555350; text-decoration: none; }
+    footer a:hover { color: var(--muted); }
+
+    @media (max-width: 680px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+      section { padding: 4rem 1.25rem; }
+      #home { padding: 100px 1.25rem 4rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .project-card { grid-template-columns: 1fr; }
+      .project-num { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo">M. Onabanjo.</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#articles" class="nav-articles">✍ Articles</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<section id="home">
+  <p class="hero-label"><span></span>Lagos, Nigeria · Open to Work</p>
+  <h1 class="hero-title">Onabanjo<br><em>Michael.</em></h1>
+  <p class="hero-bio">
+    I'm focused on how transport actually works — especially the informal systems that move most people across African cities. A big part of my work is capturing real-time data from these systems and using it to make transport clean, safer, and easier to navigate. At the core: identifying key routes, integrating EV technologies, and building planning frameworks for informal and multimodal systems.
+  </p>
+  <p class="hero-ieee">
+    Editorial Board, <a href="https://ieee-itss.org/pub/its-podcasts/" target="_blank" rel="noopener">IEEE ITS Society Podcast</a> ·
+    Research Assistant, <a href="https://www.tratsedi.com" target="_blank" rel="noopener">TRATSEDI</a> ·
+    B.Eng. Electrical &amp; Electronics Engineering, OOU
+  </p>
+  <div class="hero-btns">
+    <a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener" class="btn">⌥ GitHub</a>
+    <a href="https://www.linkedin.com/in/micheal-onabanjo" target="_blank" rel="noopener" class="btn">in LinkedIn</a>
+    <a href="https://twitter.com/onabanjomico" target="_blank" rel="noopener" class="btn">𝕏 Twitter</a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="btn btn-substack">✍ Substack</a>
+    <a href="mailto:Onabanjomicheal01@gmail.com" class="btn btn-primary">Get in touch →</a>
+  </div>
+</section>
+
+<section id="projects">
+  <p class="section-eyebrow">Work I've built</p>
+  <h2 class="section-title">Projects &amp; <em>Research</em></h2>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterProjects('all',this)">All</button>
+    <button class="filter-btn" onclick="filterProjects('transport',this)">Transport</button>
+    <button class="filter-btn" onclick="filterProjects('logistics',this)">Logistics</button>
+    <button class="filter-btn" onclick="filterProjects('mlops',this)">MLOps</button>
+    <button class="filter-btn" onclick="filterProjects('av',this)">Autonomous Vehicles</button>
+    <button class="filter-btn" onclick="filterProjects('ai',this)">AI Apps</button>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card" data-tags="ai transport">
+      <div class="project-num">001</div>
+      <div>
+        <div class="project-meta"><span class="project-badge live">LIVE · AI App</span><span class="project-badge">Deployed</span></div>
+        <div class="project-title">NaijaTrip AI — Nigeria Travel Intelligence</div>
+        <div class="project-desc">A travel intelligence app covering all 36 Nigerian states and the FCT, combining an LLM with live traffic, weather, exchange rate, and advisory feeds to deliver route briefs, fare estimates, and safety guidance in real time.</div>
+        <div class="project-tags"><span class="tag">React</span><span class="tag">Groq LLM</span><span class="tag">Node/Express</span><span class="tag">TomTom API</span><span class="tag">Vercel</span><span class="tag">Prompt Engineering</span></div>
+        <div class="project-links"><a href="https://naija-trip-ai.vercel.app/" target="_blank" class="proj-link">Live App ↗</a><a href="https://github.com/Onabanjomicheal/naija-trip-ai" target="_blank" class="proj-link">GitHub ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="ai av">
+      <div class="project-num">002</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">AI App</span><span class="project-badge">AV/EV</span></div>
+        <div class="project-title">AV/EV Consultant — AI Advisory Platform for Mobility Practitioners</div>
+        <div class="project-desc">Closes the gap between emerging mobility technology and the people responsible for deploying it. Delivers on-demand, context-aware intelligence on AV and EV systems via a RAG pipeline — so practitioners and policymakers can move from question to informed decision without manual research overhead.</div>
+        <div class="project-tags"><span class="tag">FastAPI</span><span class="tag">Streamlit</span><span class="tag">LangChain</span><span class="tag">ChromaDB</span><span class="tag">RAG</span><span class="tag">Groq LLM</span><span class="tag">HuggingFace</span><span class="tag">Supabase</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/ai-av-ev-consultant" target="_blank" class="proj-link">GitHub ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="mlops">
+      <div class="project-num">003</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">MLOps</span><span class="project-badge">Production</span></div>
+        <div class="project-title">Customer Satisfaction Prediction to Production</div>
+        <div class="project-desc">Predicts customer satisfaction in e-commerce and segments outcomes into actionable risk tiers — green for automated approval, yellow for proactive outreach, red for urgent intervention. Champion model CatBoost achieved ROC-AUC of 0.72, capturing 71% of dissatisfied customers before escalation.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">MLOps</span><span class="tag">CI/CD</span><span class="tag">Production</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Customer_Satisfaction_Prediction_to_Production" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="transport av">
+      <div class="project-num">004</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Deep RL</span><span class="project-badge">Lagos</span></div>
+        <div class="project-title">Adaptive Traffic Signal Control with DQN</div>
+        <div class="project-desc">A Deep Q-Network agent trained on Lagos intersection data in SUMO. Compared against fixed-time controllers, the RL agent achieved a 24% reduction in average travel time — replacing static signal timing with responsive, data-driven urban control.</div>
+        <div class="project-tags"><span class="tag">Deep RL</span><span class="tag">DQN</span><span class="tag">SUMO</span><span class="tag">TraCI</span><span class="tag">Lagos</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Adaptive-Traffic-Signal-DQN" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="transport av">
+      <div class="project-num">005</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Research</span><span class="project-badge">Lagos</span></div>
+        <div class="project-title">Third Mainland Bridge — AV/HDV Simulation</div>
+        <div class="project-desc">Microsimulation of one of Africa's longest bridges, calibrated to ~117,000 vehicles/day. A 10% autonomous vehicle penetration scenario demonstrated a 20.72% reduction in traffic emissions — evidence-based intelligence for AV policy on critical Lagos infrastructure.</div>
+        <div class="project-tags"><span class="tag">SUMO</span><span class="tag">Python</span><span class="tag">Autonomous Vehicles</span><span class="tag">Emissions</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/third-mainland-av-hdv-simulation" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="av">
+      <div class="project-num">006</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">AV</span><span class="project-badge">Simulation</span></div>
+        <div class="project-title">AV Car-Following &amp; Lane-Changing</div>
+        <div class="project-desc">Models how autonomous vehicles make longitudinal and lateral decisions — following distance, speed adaptation, and lane-change triggering — and studies the effect on corridor-level traffic flow and safety.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">AV Modelling</span><span class="tag">Car Following</span><span class="tag">Lane Changing</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Autonomous_Vehicle--Car_Following-and-Lane_Changing-Mini-Project" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="logistics">
+      <div class="project-num">007</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Logistics</span><span class="project-badge">EDA</span></div>
+        <div class="project-title">Delivery Logistics Analysis — Delhivery Network</div>
+        <div class="project-desc">Analyses Delhivery's logistics network to identify the key drivers behind delivery delays, surfacing patterns across trip types, geography, and time to give operations teams a clear basis for reducing late shipments.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Seaborn</span><span class="tag">EDA</span><span class="tag">Supply Chain</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Delivery-Logistics-Data-Analysis" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="logistics ai">
+      <div class="project-num">008</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Logistics</span><span class="project-badge">AI App</span></div>
+        <div class="project-title">Compliance QA Pipeline — Logistics Video Intelligence</div>
+        <div class="project-desc">Logistics operations lose significant value to compliance failures that go undetected until too late. This system watches live video feeds from logistics facilities and automatically flags violations in real time — turning a manual audit process into a continuous, automated one.</div>
+        <div class="project-tags"><span class="tag">Azure AI Vision</span><span class="tag">Azure OpenAI</span><span class="tag">Azure AI Search</span><span class="tag">RAG</span><span class="tag">FastAPI</span><span class="tag">Python</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/logistics-video-compliance" target="_blank" class="proj-link">GitHub ↗</a></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="articles">
+  <p class="section-eyebrow">Thought leadership</p>
+  <h2 class="section-title">Articles &amp; <em>Insights</em></h2>
+  <p class="articles-intro">
+    I write about electric vehicles, battery technology, sustainable mobility, intelligent transportation systems, and emerging transportation technologies — connecting engineering depth with real-world deployment challenges.
+  </p>
+  <div class="articles-grid">
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Battery Technology</div>
+      <div class="article-title">Battery Swapping: Opportunity or Hype?</div>
+      <div class="article-excerpt">A technical breakdown of battery-swap infrastructure — energy density trade-offs, grid implications, and where the model genuinely works vs. where it falls short.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Charging Infrastructure</div>
+      <div class="article-title">Understanding EV Charging Infrastructure</div>
+      <div class="article-excerpt">From Level 1 AC to 350kW DC fast chargers — how power electronics, grid capacity, and demand forecasting shape every charging deployment decision.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Autonomous Vehicles</div>
+      <div class="article-title">Autonomous Vehicles in Mixed Traffic Conditions</div>
+      <div class="article-excerpt">What happens when AV penetration is low — and how mixed AV/HDV traffic flows behave differently from theoretical models. Lessons from Lagos microsimulation.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Emerging Economies</div>
+      <div class="article-title">Transportation Electrification in Emerging Economies</div>
+      <div class="article-excerpt">Why the EV adoption playbook written for Europe and North America fails in West Africa — and what an Africa-first electrification strategy actually looks like.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Power Electronics</div>
+      <div class="article-title">Inside the EV Inverter: What Engineers Need to Know</div>
+      <div class="article-excerpt">A deep dive into how motor-drive inverters work, the role of SiC MOSFETs, thermal management, and why inverter efficiency is the hidden factor in EV range.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Grid Integration</div>
+      <div class="article-title">Grid-Aware EV Deployment: Why Timing Matters</div>
+      <div class="article-excerpt">Uncoordinated EV charging creates dangerous demand spikes. This piece covers vehicle-to-grid concepts, smart charging protocols, and what utilities need from fleet operators.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+  </div>
+  <div class="articles-footer">
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="substack-cta">
+      Read all articles on Electric Vehicle Demystify →
+    </a>
+    <span class="articles-desc">EV · Battery · ITS · Mobility Research</span>
+  </div>
+</section>
+
+<section id="skills">
+  <p class="section-eyebrow">Capabilities</p>
+  <h2 class="section-title">What I <em>actually</em> know</h2>
+  <div class="skills-cols">
+    <div class="skill-group">
+      <h3>Transport simulation &amp; modelling</h3>
+      <ul class="skill-list">
+        <li>SUMO Microsimulation</li><li>Deep Reinforcement Learning</li><li>TraCI Python API</li>
+        <li>QGIS / GeoPandas</li><li>AV Behaviour Modelling</li><li>GTFS Data</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>Machine learning &amp; AI engineering</h3>
+      <ul class="skill-list">
+        <li>TensorFlow / PyTorch</li><li>Scikit-learn</li><li>Stable-Baselines3 / DQN</li>
+        <li>Hugging Face Transformers</li><li>LLM APIs</li><li>Computer Vision / CNN</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>MLOps &amp; cloud deployment</h3>
+      <ul class="skill-list">
+        <li>AWS / Azure / Vercel</li><li>DVC / MLflow / Kubeflow</li>
+        <li>GitHub Actions / CI-CD</li><li>Docker</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <p class="section-eyebrow">Get in touch</p>
+  <h2 class="section-title">Let's <em>connect.</em></h2>
+  <div class="contact-grid">
+    <div class="contact-copy">
+      <p>Open to ML engineering, transportation AI, and research roles. Available for remote opportunities and research collaborations.</p>
+      <p>If you're working on intelligent transportation systems, EV deployment, or African mobility — I'd like to hear from you.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:Onabanjomicheal01@gmail.com" class="contact-link">
+        <span class="contact-link-icon">✉</span>
+        <span class="contact-link-label">Email</span>
+        <span class="contact-link-value">Onabanjomicheal01@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/micheal-onabanjo" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">in</span>
+        <span class="contact-link-label">LinkedIn</span>
+        <span class="contact-link-value">micheal-onabanjo</span>
+      </a>
+      <a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">⌥</span>
+        <span class="contact-link-label">GitHub</span>
+        <span class="contact-link-value">Onabanjomicheal</span>
+      </a>
+      <a href="https://twitter.com/onabanjomico" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">𝕏</span>
+        <span class="contact-link-label">Twitter / X</span>
+        <span class="contact-link-value">@onabanjomico</span>
+      </a>
+      <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="contact-link substack-link">
+        <span class="contact-link-icon">✍</span>
+        <span class="contact-link-label">Substack</span>
+        <span class="contact-link-value">Electric Vehicle Demystify</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Onabanjo Michael Oluwatobi &nbsp;·&nbsp; Lagos, Nigeria 🇳🇬 &nbsp;·&nbsp; Open to Remote &nbsp;·&nbsp; WAT (UTC+1)
+  &nbsp;·&nbsp; <a href="#home">↑ Back to top</a>
+</footer>
+
+<script>
+function filterProjects(tag, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(card => {
+    const tags = card.dataset.tags || '';
+    card.style.display = (tag === 'all' || tags.includes(tag)) ? 'grid' : 'none';
+  });
+}
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+  </html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onabanjo Michael — Transport & ML Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d0d; --bg2: #141414; --bg3: #1a1a1a;
+      --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.16);
+      --text: #f0ede6; --muted: #7a7870;
+      --accent: #c8ff5f; --accent2: #3ddc97;
+      --sans: 'Inter', system-ui, sans-serif;
+      --serif: 'DM Serif Display', Georgia, serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 60px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(13,13,13,0.92); backdrop-filter: blur(12px);
+    }
+    .nav-logo { font-family: var(--serif); font-size: 1.15rem; color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.8125rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.nav-articles { color: #ff7033; }
+    .nav-links a.nav-articles:hover { color: #ffb38a; }
+
+    section { padding: 6rem 2.5rem; max-width: 960px; margin: 0 auto; }
+    #home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 100px; max-width: 960px; }
+
+    .hero-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.5rem; }
+    .hero-label span { display: inline-block; width: 24px; height: 1px; background: var(--accent2); vertical-align: middle; margin-right: 10px; }
+    .hero-title { font-family: var(--serif); font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1.03; letter-spacing: -0.02em; margin-bottom: 1.5rem; color: var(--text); }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-bio { max-width: 640px; color: #a09d96; font-size: 1.05rem; line-height: 1.75; margin-bottom: 1rem; }
+    .hero-ieee { max-width: 640px; color: #7a7870; font-size: 0.925rem; line-height: 1.7; margin-bottom: 2.5rem; }
+    .hero-ieee a { color: var(--accent2); text-decoration: none; }
+    .hero-ieee a:hover { text-decoration: underline; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+    .btn { display: inline-flex; align-items: center; gap: 7px; padding: 0.6rem 1.25rem; border: 1px solid var(--border-hover); border-radius: 4px; font-size: 0.8125rem; font-weight: 500; text-decoration: none; color: var(--muted); background: transparent; transition: color 0.2s, border-color 0.2s, background 0.2s; }
+    .btn:hover { color: var(--text); border-color: rgba(255,255,255,0.28); background: var(--bg2); }
+    .btn-primary { background: var(--accent2); color: #062613; border-color: var(--accent2); font-weight: 600; }
+    .btn-primary:hover { background: var(--accent); border-color: var(--accent); color: #1a2e0a; }
+    .btn-substack { border-color: rgba(255,112,51,0.4); color: #ff7033; }
+    .btn-substack:hover { border-color: #ff7033; background: rgba(255,112,51,0.08); color: #ff7033; }
+
+    .section-eyebrow { font-size: 0.725rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+    .section-eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--muted); }
+    h2.section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 3.5rem; color: var(--text); }
+    h2.section-title em { font-style: italic; color: var(--accent); }
+
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 3rem; }
+    .filter-btn { padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 2rem; font-size: 0.78rem; background: transparent; color: var(--muted); cursor: pointer; transition: all 0.18s; font-family: var(--sans); }
+    .filter-btn:hover, .filter-btn.active { border-color: var(--accent2); color: var(--accent2); background: rgba(61,220,151,0.06); }
+    .projects-grid { display: flex; flex-direction: column; gap: 1px; border-top: 1px solid var(--border); }
+    .project-card { display: grid; grid-template-columns: 60px 1fr; gap: 0 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); transition: background 0.18s, padding 0.18s; }
+    .project-card:hover { background: var(--bg2); padding-left: 1rem; padding-right: 1rem; border-radius: 4px; }
+    .project-num { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; padding-top: 0.3rem; }
+    .project-meta { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+    .project-badge { font-size: 0.67rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); }
+    .project-badge.live { border-color: rgba(61,220,151,0.4); color: var(--accent2); background: rgba(61,220,151,0.07); }
+    .project-title { font-size: 1.1rem; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; line-height: 1.3; }
+    .project-desc { font-size: 0.875rem; color: #7a7870; line-height: 1.65; margin-bottom: 1rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.875rem; }
+    .tag { font-size: 0.68rem; padding: 2px 7px; border-radius: 3px; background: var(--bg3); color: #666360; border: 1px solid var(--border); }
+    .project-links { display: flex; gap: 0.75rem; }
+    .proj-link { font-size: 0.78rem; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 0.18s, border-color 0.18s; }
+    .proj-link:hover { color: var(--accent2); border-color: var(--accent2); }
+
+    #articles { background: var(--bg); }
+    .articles-intro { font-size: 1.05rem; color: #7a7870; max-width: 580px; margin-bottom: 3rem; line-height: 1.75; }
+    .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
+    .article-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; text-decoration: none; display: flex; flex-direction: column; gap: 0.75rem; transition: border-color 0.2s, background 0.2s; }
+    .article-card:hover { border-color: rgba(255,112,51,0.35); background: var(--bg3); }
+    .article-topic { font-size: 0.67rem; letter-spacing: 0.1em; text-transform: uppercase; color: #ff7033; }
+    .article-title { font-size: 0.975rem; font-weight: 500; color: var(--text); line-height: 1.4; }
+    .article-excerpt { font-size: 0.825rem; color: var(--muted); line-height: 1.6; flex: 1; }
+    .article-cta { font-size: 0.78rem; color: #ff7033; display: flex; align-items: center; gap: 5px; }
+    .articles-footer { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .substack-cta { display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem; color: #ff7033; text-decoration: none; font-weight: 500; transition: gap 0.2s; }
+    .substack-cta:hover { gap: 12px; }
+    .articles-desc { font-size: 0.825rem; color: var(--muted); }
+
+    .skills-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2.5rem; }
+    .skill-group h3 { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.25rem; }
+    .skill-list { list-style: none; }
+    .skill-list li { font-size: 0.875rem; color: #8a8780; padding: 0.4rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+    .skill-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--border-hover); flex-shrink: 0; }
+
+    #contact { border-top: 1px solid var(--border); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .contact-copy p { color: #7a7870; font-size: 0.925rem; line-height: 1.75; margin-bottom: 1.25rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-link { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--muted); font-size: 0.875rem; transition: color 0.18s; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 4px; background: var(--bg2); }
+    .contact-link:hover { color: var(--text); border-color: var(--border-hover); }
+    .contact-link.substack-link:hover { color: #ff7033; border-color: rgba(255,112,51,0.3); }
+    .contact-link-icon { font-size: 1rem; width: 20px; text-align: center; }
+    .contact-link-label { flex: 1; }
+    .contact-link-value { font-size: 0.8rem; color: #555350; }
+
+    footer { text-align: center; padding: 2.5rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: #444240; }
+    footer a { color: #555350; text-decoration: none; }
+    footer a:hover { color: var(--muted); }
+
+    @media (max-width: 680px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+      section { padding: 4rem 1.25rem; }
+      #home { padding: 100px 1.25rem 4rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .project-card { grid-template-columns: 1fr; }
+      .project-num { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo">M. Onabanjo.</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#articles" class="nav-articles">✍ Articles</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<section id="home">
+  <p class="hero-label"><span></span>Lagos, Nigeria · Open to Work</p>
+  <h1 class="hero-title">Onabanjo<br><em>Michael.</em></h1>
+  <p class="hero-bio">
+    I'm focused on how transport actually works — especially the informal systems that move most people across African cities. A big part of my work is capturing real-time data from these systems and using it to make transport clean, safer, and easier to navigate. At the core: identifying key routes, integrating EV technologies, and building planning frameworks for informal and multimodal systems.
+  </p>
+  <p class="hero-ieee">
+    Editorial Board, <a href="https://ieee-itss.org/pub/its-podcasts/" target="_blank" rel="noopener">IEEE ITS Society Podcast</a> ·
+    Research Assistant, <a href="https://www.tratsedi.com" target="_blank" rel="noopener">TRATSEDI</a> ·
+    B.Eng. Electrical &amp; Electronics Engineering, OOU
+  </p>
+  <div class="hero-btns">
+    <a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener" class="btn">⌥ GitHub</a>
+    <a href="https://www.linkedin.com/in/micheal-onabanjo" target="_blank" rel="noopener" class="btn">in LinkedIn</a>
+    <a href="https://twitter.com/onabanjomico" target="_blank" rel="noopener" class="btn">𝕏 Twitter</a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="btn btn-substack">✍ Substack</a>
+    <a href="mailto:Onabanjomicheal01@gmail.com" class="btn btn-primary">Get in touch →</a>
+  </div>
+</section>
+
+<section id="projects">
+  <p class="section-eyebrow">Work I've built</p>
+  <h2 class="section-title">Projects &amp; <em>Research</em></h2>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterProjects('all',this)">All</button>
+    <button class="filter-btn" onclick="filterProjects('transport',this)">Transport</button>
+    <button class="filter-btn" onclick="filterProjects('logistics',this)">Logistics</button>
+    <button class="filter-btn" onclick="filterProjects('mlops',this)">MLOps</button>
+    <button class="filter-btn" onclick="filterProjects('av',this)">Autonomous Vehicles</button>
+    <button class="filter-btn" onclick="filterProjects('ai',this)">AI Apps</button>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card" data-tags="ai transport">
+      <div class="project-num">001</div>
+      <div>
+        <div class="project-meta"><span class="project-badge live">LIVE · AI App</span><span class="project-badge">Deployed</span></div>
+        <div class="project-title">NaijaTrip AI — Nigeria Travel Intelligence</div>
+        <div class="project-desc">A travel intelligence app covering all 36 Nigerian states and the FCT, combining an LLM with live traffic, weather, exchange rate, and advisory feeds to deliver route briefs, fare estimates, and safety guidance in real time.</div>
+        <div class="project-tags"><span class="tag">React</span><span class="tag">Groq LLM</span><span class="tag">Node/Express</span><span class="tag">TomTom API</span><span class="tag">Vercel</span><span class="tag">Prompt Engineering</span></div>
+        <div class="project-links"><a href="https://naija-trip-ai.vercel.app/" target="_blank" class="proj-link">Live App ↗</a><a href="https://github.com/Onabanjomicheal/naija-trip-ai" target="_blank" class="proj-link">GitHub ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="ai av">
+      <div class="project-num">002</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">AI App</span><span class="project-badge">AV/EV</span></div>
+        <div class="project-title">AV/EV Consultant — AI Advisory Platform for Mobility Practitioners</div>
+        <div class="project-desc">Closes the gap between emerging mobility technology and the people responsible for deploying it. Delivers on-demand, context-aware intelligence on AV and EV systems via a RAG pipeline — so practitioners and policymakers can move from question to informed decision without manual research overhead.</div>
+        <div class="project-tags"><span class="tag">FastAPI</span><span class="tag">Streamlit</span><span class="tag">LangChain</span><span class="tag">ChromaDB</span><span class="tag">RAG</span><span class="tag">Groq LLM</span><span class="tag">HuggingFace</span><span class="tag">Supabase</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/ai-av-ev-consultant" target="_blank" class="proj-link">GitHub ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="mlops">
+      <div class="project-num">003</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">MLOps</span><span class="project-badge">Production</span></div>
+        <div class="project-title">Customer Satisfaction Prediction to Production</div>
+        <div class="project-desc">Predicts customer satisfaction in e-commerce and segments outcomes into actionable risk tiers — green for automated approval, yellow for proactive outreach, red for urgent intervention. Champion model CatBoost achieved ROC-AUC of 0.72, capturing 71% of dissatisfied customers before escalation.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">MLOps</span><span class="tag">CI/CD</span><span class="tag">Production</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Customer_Satisfaction_Prediction_to_Production" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="transport av">
+      <div class="project-num">004</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Deep RL</span><span class="project-badge">Lagos</span></div>
+        <div class="project-title">Adaptive Traffic Signal Control with DQN</div>
+        <div class="project-desc">A Deep Q-Network agent trained on Lagos intersection data in SUMO. Compared against fixed-time controllers, the RL agent achieved a 24% reduction in average travel time — replacing static signal timing with responsive, data-driven urban control.</div>
+        <div class="project-tags"><span class="tag">Deep RL</span><span class="tag">DQN</span><span class="tag">SUMO</span><span class="tag">TraCI</span><span class="tag">Lagos</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Adaptive-Traffic-Signal-DQN" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="transport av">
+      <div class="project-num">005</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Research</span><span class="project-badge">Lagos</span></div>
+        <div class="project-title">Third Mainland Bridge — AV/HDV Simulation</div>
+        <div class="project-desc">Microsimulation of one of Africa's longest bridges, calibrated to ~117,000 vehicles/day. A 10% autonomous vehicle penetration scenario demonstrated a 20.72% reduction in traffic emissions — evidence-based intelligence for AV policy on critical Lagos infrastructure.</div>
+        <div class="project-tags"><span class="tag">SUMO</span><span class="tag">Python</span><span class="tag">Autonomous Vehicles</span><span class="tag">Emissions</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/third-mainland-av-hdv-simulation" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="av">
+      <div class="project-num">006</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">AV</span><span class="project-badge">Simulation</span></div>
+        <div class="project-title">AV Car-Following &amp; Lane-Changing</div>
+        <div class="project-desc">Models how autonomous vehicles make longitudinal and lateral decisions — following distance, speed adaptation, and lane-change triggering — and studies the effect on corridor-level traffic flow and safety.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">AV Modelling</span><span class="tag">Car Following</span><span class="tag">Lane Changing</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Autonomous_Vehicle--Car_Following-and-Lane_Changing-Mini-Project" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="logistics">
+      <div class="project-num">007</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Logistics</span><span class="project-badge">EDA</span></div>
+        <div class="project-title">Delivery Logistics Analysis — Delhivery Network</div>
+        <div class="project-desc">Analyses Delhivery's logistics network to identify the key drivers behind delivery delays, surfacing patterns across trip types, geography, and time to give operations teams a clear basis for reducing late shipments.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Seaborn</span><span class="tag">EDA</span><span class="tag">Supply Chain</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Delivery-Logistics-Data-Analysis" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="logistics ai">
+      <div class="project-num">008</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Logistics</span><span class="project-badge">AI App</span></div>
+        <div class="project-title">Compliance QA Pipeline — Logistics Video Intelligence</div>
+        <div class="project-desc">Logistics operations lose significant value to compliance failures that go undetected until too late. This system watches live video feeds from logistics facilities and automatically flags violations in real time — turning a manual audit process into a continuous, automated one.</div>
+        <div class="project-tags"><span class="tag">Azure AI Vision</span><span class="tag">Azure OpenAI</span><span class="tag">Azure AI Search</span><span class="tag">RAG</span><span class="tag">FastAPI</span><span class="tag">Python</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/logistics-video-compliance" target="_blank" class="proj-link">GitHub ↗</a></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="articles">
+  <p class="section-eyebrow">Thought leadership</p>
+  <h2 class="section-title">Articles &amp; <em>Insights</em></h2>
+  <p class="articles-intro">
+    I write about electric vehicles, battery technology, sustainable mobility, intelligent transportation systems, and emerging transportation technologies — connecting engineering depth with real-world deployment challenges.
+  </p>
+  <div class="articles-grid">
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Battery Technology</div>
+      <div class="article-title">Battery Swapping: Opportunity or Hype?</div>
+      <div class="article-excerpt">A technical breakdown of battery-swap infrastructure — energy density trade-offs, grid implications, and where the model genuinely works vs. where it falls short.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Charging Infrastructure</div>
+      <div class="article-title">Understanding EV Charging Infrastructure</div>
+      <div class="article-excerpt">From Level 1 AC to 350kW DC fast chargers — how power electronics, grid capacity, and demand forecasting shape every charging deployment decision.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Autonomous Vehicles</div>
+      <div class="article-title">Autonomous Vehicles in Mixed Traffic Conditions</div>
+      <div class="article-excerpt">What happens when AV penetration is low — and how mixed AV/HDV traffic flows behave differently from theoretical models. Lessons from Lagos microsimulation.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Emerging Economies</div>
+      <div class="article-title">Transportation Electrification in Emerging Economies</div>
+      <div class="article-excerpt">Why the EV adoption playbook written for Europe and North America fails in West Africa — and what an Africa-first electrification strategy actually looks like.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Power Electronics</div>
+      <div class="article-title">Inside the EV Inverter: What Engineers Need to Know</div>
+      <div class="article-excerpt">A deep dive into how motor-drive inverters work, the role of SiC MOSFETs, thermal management, and why inverter efficiency is the hidden factor in EV range.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Grid Integration</div>
+      <div class="article-title">Grid-Aware EV Deployment: Why Timing Matters</div>
+      <div class="article-excerpt">Uncoordinated EV charging creates dangerous demand spikes. This piece covers vehicle-to-grid concepts, smart charging protocols, and what utilities need from fleet operators.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+  </div>
+  <div class="articles-footer">
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="substack-cta">
+      Read all articles on Electric Vehicle Demystify →
+    </a>
+    <span class="articles-desc">EV · Battery · ITS · Mobility Research</span>
+  </div>
+</section>
+
+<section id="skills">
+  <p class="section-eyebrow">Capabilities</p>
+  <h2 class="section-title">What I <em>actually</em> know</h2>
+  <div class="skills-cols">
+    <div class="skill-group">
+      <h3>Transport simulation &amp; modelling</h3>
+      <ul class="skill-list">
+        <li>SUMO Microsimulation</li><li>Deep Reinforcement Learning</li><li>TraCI Python API</li>
+        <li>QGIS / GeoPandas</li><li>AV Behaviour Modelling</li><li>GTFS Data</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>Machine learning &amp; AI engineering</h3>
+      <ul class="skill-list">
+        <li>TensorFlow / PyTorch</li><li>Scikit-learn</li><li>Stable-Baselines3 / DQN</li>
+        <li>Hugging Face Transformers</li><li>LLM APIs</li><li>Computer Vision / CNN</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>MLOps &amp; cloud deployment</h3>
+      <ul class="skill-list">
+        <li>AWS / Azure / Vercel</li><li>DVC / MLflow / Kubeflow</li>
+        <li>GitHub Actions / CI-CD</li><li>Docker</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <p class="section-eyebrow">Get in touch</p>
+  <h2 class="section-title">Let's <em>connect.</em></h2>
+  <div class="contact-grid">
+    <div class="contact-copy">
+      <p>Open to ML engineering, transportation AI, and research roles. Available for remote opportunities and research collaborations.</p>
+      <p>If you're working on intelligent transportation systems, EV deployment, or African mobility — I'd like to hear from you.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:Onabanjomicheal01@gmail.com" class="contact-link">
+        <span class="contact-link-icon">✉</span>
+        <span class="contact-link-label">Email</span>
+        <span class="contact-link-value">Onabanjomicheal01@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/micheal-onabanjo" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">in</span>
+        <span class="contact-link-label">LinkedIn</span>
+        <span class="contact-link-value">micheal-onabanjo</span>
+      </a>
+      <a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">⌥</span>
+        <span class="contact-link-label">GitHub</span>
+        <span class="contact-link-value">Onabanjomicheal</span>
+      </a>
+      <a href="https://twitter.com/onabanjomico" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">𝕏</span>
+        <span class="contact-link-label">Twitter / X</span>
+        <span class="contact-link-value">@onabanjomico</span>
+      </a>
+      <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="contact-link substack-link">
+        <span class="contact-link-icon">✍</span>
+        <span class="contact-link-label">Substack</span>
+        <span class="contact-link-value">Electric Vehicle Demystify</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Onabanjo Michael Oluwatobi &nbsp;·&nbsp; Lagos, Nigeria 🇳🇬 &nbsp;·&nbsp; Open to Remote &nbsp;·&nbsp; WAT (UTC+1)
+  &nbsp;·&nbsp; <a href="#home">↑ Back to top</a>
+</footer>
+
+<script>
+function filterProjects(tag, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(card => {
+    const tags = card.dataset.tags || '';
+    card.style.display = (tag === 'all' || tags.includes(tag)) ? 'grid' : 'none';
+  });
+}
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+  </html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onabanjo Michael — Transport & ML Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d0d; --bg2: #141414; --bg3: #1a1a1a;
+      --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.16);
+      --text: #f0ede6; --muted: #7a7870;
+      --accent: #c8ff5f; --accent2: #3ddc97;
+      --sans: 'Inter', system-ui, sans-serif;
+      --serif: 'DM Serif Display', Georgia, serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 60px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(13,13,13,0.92); backdrop-filter: blur(12px);
+    }
+    .nav-logo { font-family: var(--serif); font-size: 1.15rem; color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.8125rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.nav-articles { color: #ff7033; }
+    .nav-links a.nav-articles:hover { color: #ffb38a; }
+
+    section { padding: 6rem 2.5rem; max-width: 960px; margin: 0 auto; }
+    #home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 100px; max-width: 960px; }
+
+    .hero-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.5rem; }
+    .hero-label span { display: inline-block; width: 24px; height: 1px; background: var(--accent2); vertical-align: middle; margin-right: 10px; }
+    .hero-title { font-family: var(--serif); font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1.03; letter-spacing: -0.02em; margin-bottom: 1.5rem; color: var(--text); }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-bio { max-width: 640px; color: #a09d96; font-size: 1.05rem; line-height: 1.75; margin-bottom: 1rem; }
+    .hero-ieee { max-width: 640px; color: #7a7870; font-size: 0.925rem; line-height: 1.7; margin-bottom: 2.5rem; }
+    .hero-ieee a { color: var(--accent2); text-decoration: none; }
+    .hero-ieee a:hover { text-decoration: underline; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+    .btn { display: inline-flex; align-items: center; gap: 7px; padding: 0.6rem 1.25rem; border: 1px solid var(--border-hover); border-radius: 4px; font-size: 0.8125rem; font-weight: 500; text-decoration: none; color: var(--muted); background: transparent; transition: color 0.2s, border-color 0.2s, background 0.2s; }
+    .btn:hover { color: var(--text); border-color: rgba(255,255,255,0.28); background: var(--bg2); }
+    .btn-primary { background: var(--accent2); color: #062613; border-color: var(--accent2); font-weight: 600; }
+    .btn-primary:hover { background: var(--accent); border-color: var(--accent); color: #1a2e0a; }
+    .btn-substack { border-color: rgba(255,112,51,0.4); color: #ff7033; }
+    .btn-substack:hover { border-color: #ff7033; background: rgba(255,112,51,0.08); color: #ff7033; }
+
+    .section-eyebrow { font-size: 0.725rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+    .section-eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--muted); }
+    h2.section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 3.5rem; color: var(--text); }
+    h2.section-title em { font-style: italic; color: var(--accent); }
+
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 3rem; }
+    .filter-btn { padding: 0.35rem 0.85rem; border: 1px solid var(--border); border-radius: 2rem; font-size: 0.78rem; background: transparent; color: var(--muted); cursor: pointer; transition: all 0.18s; font-family: var(--sans); }
+    .filter-btn:hover, .filter-btn.active { border-color: var(--accent2); color: var(--accent2); background: rgba(61,220,151,0.06); }
+    .projects-grid { display: flex; flex-direction: column; gap: 1px; border-top: 1px solid var(--border); }
+    .project-card { display: grid; grid-template-columns: 60px 1fr; gap: 0 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); transition: background 0.18s, padding 0.18s; }
+    .project-card:hover { background: var(--bg2); padding-left: 1rem; padding-right: 1rem; border-radius: 4px; }
+    .project-num { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; padding-top: 0.3rem; }
+    .project-meta { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+    .project-badge { font-size: 0.67rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); }
+    .project-badge.live { border-color: rgba(61,220,151,0.4); color: var(--accent2); background: rgba(61,220,151,0.07); }
+    .project-title { font-size: 1.1rem; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; line-height: 1.3; }
+    .project-desc { font-size: 0.875rem; color: #7a7870; line-height: 1.65; margin-bottom: 1rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.875rem; }
+    .tag { font-size: 0.68rem; padding: 2px 7px; border-radius: 3px; background: var(--bg3); color: #666360; border: 1px solid var(--border); }
+    .project-links { display: flex; gap: 0.75rem; }
+    .proj-link { font-size: 0.78rem; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 0.18s, border-color 0.18s; }
+    .proj-link:hover { color: var(--accent2); border-color: var(--accent2); }
+
+    #articles { background: var(--bg); }
+    .articles-intro { font-size: 1.05rem; color: #7a7870; max-width: 580px; margin-bottom: 3rem; line-height: 1.75; }
+    .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
+    .article-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; text-decoration: none; display: flex; flex-direction: column; gap: 0.75rem; transition: border-color 0.2s, background 0.2s; }
+    .article-card:hover { border-color: rgba(255,112,51,0.35); background: var(--bg3); }
+    .article-topic { font-size: 0.67rem; letter-spacing: 0.1em; text-transform: uppercase; color: #ff7033; }
+    .article-title { font-size: 0.975rem; font-weight: 500; color: var(--text); line-height: 1.4; }
+    .article-excerpt { font-size: 0.825rem; color: var(--muted); line-height: 1.6; flex: 1; }
+    .article-cta { font-size: 0.78rem; color: #ff7033; display: flex; align-items: center; gap: 5px; }
+    .articles-footer { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .substack-cta { display: inline-flex; align-items: center; gap: 8px; font-size: 0.875rem; color: #ff7033; text-decoration: none; font-weight: 500; transition: gap 0.2s; }
+    .substack-cta:hover { gap: 12px; }
+    .articles-desc { font-size: 0.825rem; color: var(--muted); }
+
+    .skills-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2.5rem; }
+    .skill-group h3 { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.25rem; }
+    .skill-list { list-style: none; }
+    .skill-list li { font-size: 0.875rem; color: #8a8780; padding: 0.4rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+    .skill-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--border-hover); flex-shrink: 0; }
+
+    #contact { border-top: 1px solid var(--border); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .contact-copy p { color: #7a7870; font-size: 0.925rem; line-height: 1.75; margin-bottom: 1.25rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-link { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--muted); font-size: 0.875rem; transition: color 0.18s; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 4px; background: var(--bg2); }
+    .contact-link:hover { color: var(--text); border-color: var(--border-hover); }
+    .contact-link.substack-link:hover { color: #ff7033; border-color: rgba(255,112,51,0.3); }
+    .contact-link-icon { font-size: 1rem; width: 20px; text-align: center; }
+    .contact-link-label { flex: 1; }
+    .contact-link-value { font-size: 0.8rem; color: #555350; }
+
+    footer { text-align: center; padding: 2.5rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: #444240; }
+    footer a { color: #555350; text-decoration: none; }
+    footer a:hover { color: var(--muted); }
+
+    @media (max-width: 680px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+      section { padding: 4rem 1.25rem; }
+      #home { padding: 100px 1.25rem 4rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .project-card { grid-template-columns: 1fr; }
+      .project-num { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo">M. Onabanjo.</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#articles" class="nav-articles">✍ Articles</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<section id="home">
+  <p class="hero-label"><span></span>Lagos, Nigeria · Open to Work</p>
+  <h1 class="hero-title">Onabanjo<br><em>Michael.</em></h1>
+  <p class="hero-bio">
+    I'm focused on how transport actually works — especially the informal systems that move most people across African cities. A big part of my work is capturing real-time data from these systems and using it to make transport clean, safer, and easier to navigate. At the core: identifying key routes, integrating EV technologies, and building planning frameworks for informal and multimodal systems.
+  </p>
+  <p class="hero-ieee">
+    Editorial Board, <a href="https://ieee-itss.org/pub/its-podcasts/" target="_blank" rel="noopener">IEEE ITS Society Podcast</a> ·
+    Research Assistant, <a href="https://www.tratsedi.com" target="_blank" rel="noopener">TRATSEDI</a> ·
+    B.Eng. Electrical &amp; Electronics Engineering, OOU
+  </p>
+  <div class="hero-btns">
+    <a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener" class="btn">⌥ GitHub</a>
+    <a href="https://www.linkedin.com/in/micheal-onabanjo" target="_blank" rel="noopener" class="btn">in LinkedIn</a>
+    <a href="https://twitter.com/onabanjomico" target="_blank" rel="noopener" class="btn">𝕏 Twitter</a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="btn btn-substack">✍ Substack</a>
+    <a href="mailto:Onabanjomicheal01@gmail.com" class="btn btn-primary">Get in touch →</a>
+  </div>
+</section>
+
+<section id="projects">
+  <p class="section-eyebrow">Work I've built</p>
+  <h2 class="section-title">Projects &amp; <em>Research</em></h2>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterProjects('all',this)">All</button>
+    <button class="filter-btn" onclick="filterProjects('transport',this)">Transport</button>
+    <button class="filter-btn" onclick="filterProjects('logistics',this)">Logistics</button>
+    <button class="filter-btn" onclick="filterProjects('mlops',this)">MLOps</button>
+    <button class="filter-btn" onclick="filterProjects('av',this)">Autonomous Vehicles</button>
+    <button class="filter-btn" onclick="filterProjects('ai',this)">AI Apps</button>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card" data-tags="ai transport">
+      <div class="project-num">001</div>
+      <div>
+        <div class="project-meta"><span class="project-badge live">LIVE · AI App</span><span class="project-badge">Deployed</span></div>
+        <div class="project-title">NaijaTrip AI — Nigeria Travel Intelligence</div>
+        <div class="project-desc">A travel intelligence app covering all 36 Nigerian states and the FCT, combining an LLM with live traffic, weather, exchange rate, and advisory feeds to deliver route briefs, fare estimates, and safety guidance in real time.</div>
+        <div class="project-tags"><span class="tag">React</span><span class="tag">Groq LLM</span><span class="tag">Node/Express</span><span class="tag">TomTom API</span><span class="tag">Vercel</span><span class="tag">Prompt Engineering</span></div>
+        <div class="project-links"><a href="https://naija-trip-ai.vercel.app/" target="_blank" class="proj-link">Live App ↗</a><a href="https://github.com/Onabanjomicheal/naija-trip-ai" target="_blank" class="proj-link">GitHub ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="ai av">
+      <div class="project-num">002</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">AI App</span><span class="project-badge">AV/EV</span></div>
+        <div class="project-title">AV/EV Consultant — AI Advisory Platform for Mobility Practitioners</div>
+        <div class="project-desc">Closes the gap between emerging mobility technology and the people responsible for deploying it. Delivers on-demand, context-aware intelligence on AV and EV systems via a RAG pipeline — so practitioners and policymakers can move from question to informed decision without manual research overhead.</div>
+        <div class="project-tags"><span class="tag">FastAPI</span><span class="tag">Streamlit</span><span class="tag">LangChain</span><span class="tag">ChromaDB</span><span class="tag">RAG</span><span class="tag">Groq LLM</span><span class="tag">HuggingFace</span><span class="tag">Supabase</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/ai-av-ev-consultant" target="_blank" class="proj-link">GitHub ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="mlops">
+      <div class="project-num">003</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">MLOps</span><span class="project-badge">Production</span></div>
+        <div class="project-title">Customer Satisfaction Prediction to Production</div>
+        <div class="project-desc">Predicts customer satisfaction in e-commerce and segments outcomes into actionable risk tiers — green for automated approval, yellow for proactive outreach, red for urgent intervention. Champion model CatBoost achieved ROC-AUC of 0.72, capturing 71% of dissatisfied customers before escalation.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">MLOps</span><span class="tag">CI/CD</span><span class="tag">Production</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Customer_Satisfaction_Prediction_to_Production" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="transport av">
+      <div class="project-num">004</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Deep RL</span><span class="project-badge">Lagos</span></div>
+        <div class="project-title">Adaptive Traffic Signal Control with DQN</div>
+        <div class="project-desc">A Deep Q-Network agent trained on Lagos intersection data in SUMO. Compared against fixed-time controllers, the RL agent achieved a 24% reduction in average travel time — replacing static signal timing with responsive, data-driven urban control.</div>
+        <div class="project-tags"><span class="tag">Deep RL</span><span class="tag">DQN</span><span class="tag">SUMO</span><span class="tag">TraCI</span><span class="tag">Lagos</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Adaptive-Traffic-Signal-DQN" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="transport av">
+      <div class="project-num">005</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Research</span><span class="project-badge">Lagos</span></div>
+        <div class="project-title">Third Mainland Bridge — AV/HDV Simulation</div>
+        <div class="project-desc">Microsimulation of one of Africa's longest bridges, calibrated to ~117,000 vehicles/day. A 10% autonomous vehicle penetration scenario demonstrated a 20.72% reduction in traffic emissions — evidence-based intelligence for AV policy on critical Lagos infrastructure.</div>
+        <div class="project-tags"><span class="tag">SUMO</span><span class="tag">Python</span><span class="tag">Autonomous Vehicles</span><span class="tag">Emissions</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/third-mainland-av-hdv-simulation" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="av">
+      <div class="project-num">006</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">AV</span><span class="project-badge">Simulation</span></div>
+        <div class="project-title">AV Car-Following &amp; Lane-Changing</div>
+        <div class="project-desc">Models how autonomous vehicles make longitudinal and lateral decisions — following distance, speed adaptation, and lane-change triggering — and studies the effect on corridor-level traffic flow and safety.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">AV Modelling</span><span class="tag">Car Following</span><span class="tag">Lane Changing</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Autonomous_Vehicle--Car_Following-and-Lane_Changing-Mini-Project" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="logistics">
+      <div class="project-num">007</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Logistics</span><span class="project-badge">EDA</span></div>
+        <div class="project-title">Delivery Logistics Analysis — Delhivery Network</div>
+        <div class="project-desc">Analyses Delhivery's logistics network to identify the key drivers behind delivery delays, surfacing patterns across trip types, geography, and time to give operations teams a clear basis for reducing late shipments.</div>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Seaborn</span><span class="tag">EDA</span><span class="tag">Supply Chain</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/Delivery-Logistics-Data-Analysis" target="_blank" class="proj-link">Repository ↗</a></div>
+      </div>
+    </div>
+
+    <div class="project-card" data-tags="logistics ai">
+      <div class="project-num">008</div>
+      <div>
+        <div class="project-meta"><span class="project-badge">Logistics</span><span class="project-badge">AI App</span></div>
+        <div class="project-title">Compliance QA Pipeline — Logistics Video Intelligence</div>
+        <div class="project-desc">Logistics operations lose significant value to compliance failures that go undetected until too late. This system watches live video feeds from logistics facilities and automatically flags violations in real time — turning a manual audit process into a continuous, automated one.</div>
+        <div class="project-tags"><span class="tag">Azure AI Vision</span><span class="tag">Azure OpenAI</span><span class="tag">Azure AI Search</span><span class="tag">RAG</span><span class="tag">FastAPI</span><span class="tag">Python</span></div>
+        <div class="project-links"><a href="https://github.com/Onabanjomicheal/logistics-video-compliance" target="_blank" class="proj-link">GitHub ↗</a></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="articles">
+  <p class="section-eyebrow">Thought leadership</p>
+  <h2 class="section-title">Articles &amp; <em>Insights</em></h2>
+  <p class="articles-intro">
+    I write about electric vehicles, battery technology, sustainable mobility, intelligent transportation systems, and emerging transportation technologies — connecting engineering depth with real-world deployment challenges.
+  </p>
+  <div class="articles-grid">
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Battery Technology</div>
+      <div class="article-title">Battery Swapping: Opportunity or Hype?</div>
+      <div class="article-excerpt">A technical breakdown of battery-swap infrastructure — energy density trade-offs, grid implications, and where the model genuinely works vs. where it falls short.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Charging Infrastructure</div>
+      <div class="article-title">Understanding EV Charging Infrastructure</div>
+      <div class="article-excerpt">From Level 1 AC to 350kW DC fast chargers — how power electronics, grid capacity, and demand forecasting shape every charging deployment decision.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Autonomous Vehicles</div>
+      <div class="article-title">Autonomous Vehicles in Mixed Traffic Conditions</div>
+      <div class="article-excerpt">What happens when AV penetration is low — and how mixed AV/HDV traffic flows behave differently from theoretical models. Lessons from Lagos microsimulation.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Emerging Economies</div>
+      <div class="article-title">Transportation Electrification in Emerging Economies</div>
+      <div class="article-excerpt">Why the EV adoption playbook written for Europe and North America fails in West Africa — and what an Africa-first electrification strategy actually looks like.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Power Electronics</div>
+      <div class="article-title">Inside the EV Inverter: What Engineers Need to Know</div>
+      <div class="article-excerpt">A deep dive into how motor-drive inverters work, the role of SiC MOSFETs, thermal management, and why inverter efficiency is the hidden factor in EV range.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="article-card">
+      <div class="article-topic">Grid Integration</div>
+      <div class="article-title">Grid-Aware EV Deployment: Why Timing Matters</div>
+      <div class="article-excerpt">Uncoordinated EV charging creates dangerous demand spikes. This piece covers vehicle-to-grid concepts, smart charging protocols, and what utilities need from fleet operators.</div>
+      <div class="article-cta">Read on Substack →</div>
+    </a>
+  </div>
+  <div class="articles-footer">
+    <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="substack-cta">
+      Read all articles on Electric Vehicle Demystify →
+    </a>
+    <span class="articles-desc">EV · Battery · ITS · Mobility Research</span>
+  </div>
+</section>
+
+<section id="skills">
+  <p class="section-eyebrow">Capabilities</p>
+  <h2 class="section-title">What I <em>actually</em> know</h2>
+  <div class="skills-cols">
+    <div class="skill-group">
+      <h3>Transport simulation &amp; modelling</h3>
+      <ul class="skill-list">
+        <li>SUMO Microsimulation</li><li>Deep Reinforcement Learning</li><li>TraCI Python API</li>
+        <li>QGIS / GeoPandas</li><li>AV Behaviour Modelling</li><li>GTFS Data</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>Machine learning &amp; AI engineering</h3>
+      <ul class="skill-list">
+        <li>TensorFlow / PyTorch</li><li>Scikit-learn</li><li>Stable-Baselines3 / DQN</li>
+        <li>Hugging Face Transformers</li><li>LLM APIs</li><li>Computer Vision / CNN</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>MLOps &amp; cloud deployment</h3>
+      <ul class="skill-list">
+        <li>AWS / Azure / Vercel</li><li>DVC / MLflow / Kubeflow</li>
+        <li>GitHub Actions / CI-CD</li><li>Docker</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <p class="section-eyebrow">Get in touch</p>
+  <h2 class="section-title">Let's <em>connect.</em></h2>
+  <div class="contact-grid">
+    <div class="contact-copy">
+      <p>Open to ML engineering, transportation AI, and research roles. Available for remote opportunities and research collaborations.</p>
+      <p>If you're working on intelligent transportation systems, EV deployment, or African mobility — I'd like to hear from you.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:Onabanjomicheal01@gmail.com" class="contact-link">
+        <span class="contact-link-icon">✉</span>
+        <span class="contact-link-label">Email</span>
+        <span class="contact-link-value">Onabanjomicheal01@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/micheal-onabanjo" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">in</span>
+        <span class="contact-link-label">LinkedIn</span>
+        <span class="contact-link-value">micheal-onabanjo</span>
+      </a>
+      <a href="https://github.com/Onabanjomicheal" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">⌥</span>
+        <span class="contact-link-label">GitHub</span>
+        <span class="contact-link-value">Onabanjomicheal</span>
+      </a>
+      <a href="https://twitter.com/onabanjomico" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">𝕏</span>
+        <span class="contact-link-label">Twitter / X</span>
+        <span class="contact-link-value">@onabanjomico</span>
+      </a>
+      <a href="https://electricvehicledemystify.substack.com" target="_blank" rel="noopener" class="contact-link substack-link">
+        <span class="contact-link-icon">✍</span>
+        <span class="contact-link-label">Substack</span>
+        <span class="contact-link-value">Electric Vehicle Demystify</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Onabanjo Michael Oluwatobi &nbsp;·&nbsp; Lagos, Nigeria 🇳🇬 &nbsp;·&nbsp; Open to Remote &nbsp;·&nbsp; WAT (UTC+1)
+  &nbsp;·&nbsp; <a href="#home">↑ Back to top</a>
+</footer>
+
+<script>
+function filterProjects(tag, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(card => {
+    const tags = card.dataset.tags || '';
+    card.style.display = (tag === 'all' || tags.includes(tag)) ? 'grid' : 'none';
+  });
+}
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+                                     </html>
